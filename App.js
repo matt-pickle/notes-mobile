@@ -3,10 +3,10 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import * as firebase from "firebase";
 import apiKeys from "./config/keys";
-import WelcomeScreen from "./components/WelcomeScreen";
+import Welcome from "./components/Welcome";
 // import SignUp from "./components/SignUp";
 // import SignIn from "./components/SignIn";
-// import LoadingScreen from "./components/LoadingScreen";
+// import Loading from "./components/Loading";
 // import Dashboard from "./components/Dashboard";
 import styles from "./styles.js";
 
@@ -21,10 +21,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name={'Loading'} component={LoadingScreen} options={{ headerShown: false }}/> */}
-        <Stack.Screen name='WelcomeScreen' component={WelcomeScreen} options={{ headerShown: false }}/>
-        {/* <Stack.Screen name='Sign Up' component={SignUp} options={{ headerShown: false }}/>
-        <Stack.Screen name='Sign In' component={SignIn} options={{ headerShown: false }}/>
+        {/* <Stack.Screen name={'Loading'} component={Loading} options={{ headerShown: false }}/> */}
+        <Stack.Screen name='Welcome' component={Welcome} options={{ headerShown: false }}/>
+        {/* <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }}/>
+        <Stack.Screen name='SignIn' component={SignIn} options={{ headerShown: false }}/>
         <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} /> */}
       </Stack.Navigator>
     </NavigationContainer>

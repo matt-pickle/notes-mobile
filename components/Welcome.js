@@ -8,13 +8,13 @@ function Welcome({navigation}) {
       <StatusBar></StatusBar>
       <Text>Welcome Screen</Text>
       <TouchableOpacity
-        onPress={() => navigation.nagivate("SignUp")}
+        onPress={() => navigation.navigate("SignUp")}
       >
         <Text>Sign Up</Text>
       </TouchableOpacity>
       <Text>Already have an account?</Text>
       <TouchableOpacity
-        onPress={() => navigation.nagivate("SignIn")}
+        onPress={() => navigation.navigate("SignIn")}
       >
         <Text>Sign In</Text>
       </TouchableOpacity>

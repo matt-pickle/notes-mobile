@@ -4,7 +4,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import * as firebase from "firebase";
 import apiKeys from "./config/keys";
 import Welcome from "./components/Welcome";
-// import SignUp from "./components/SignUp";
+import SignUp from "./components/SignUp";
 // import SignIn from "./components/SignIn";
 // import Loading from "./components/Loading";
 // import Dashboard from "./components/Dashboard";
@@ -23,9 +23,9 @@ export default function App() {
       <Stack.Navigator>
         {/* <Stack.Screen name={'Loading'} component={Loading} options={{ headerShown: false }}/> */}
         <Stack.Screen name='Welcome' component={Welcome} options={{ headerShown: false }}/>
-        {/* <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }}/>
-        <Stack.Screen name='SignIn' component={SignIn} options={{ headerShown: false }}/>
-        <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} /> */}
+        <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }}/>
+        {/* <Stack.Screen name='SignIn' component={SignIn} options={{ headerShown: false }}/> */}
+        {/* <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

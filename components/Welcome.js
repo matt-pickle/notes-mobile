@@ -1,11 +1,10 @@
 import React from "react";
-import {ImageBackground, View, Text, StatusBar} from "react-native";
+import {ImageBackground, View, Text} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 
 function Welcome({navigation}) {
   return (
     <View>
-      <StatusBar></StatusBar>
       <Text>Welcome Screen</Text>
       <TouchableOpacity
         onPress={() => navigation.navigate("SignUp")}

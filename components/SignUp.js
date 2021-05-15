@@ -8,7 +8,7 @@ function SignUp({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!name) {
       Alert.alert("Name is required");
     } else if (!email) {
@@ -16,11 +16,11 @@ function SignUp({navigation}) {
     } else if (!password) {
       Alert.alert("Password is required");
     } else {
-      registration(name, email, password);
-      navigation.navigate("Loading");
+      await registration(name, email, password);
       setName("");
       setEmail("");
       setPassword("");
+      navigation.navigate("Loading");
     }
   }
 

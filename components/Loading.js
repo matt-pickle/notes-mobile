@@ -5,7 +5,7 @@ import * as firebase from "firebase";
 function Loading({navigation}) {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
+      if (user && user.emailVerified) {
         navigation.replace("Dashboard");
       } else {
         navigation.replace("Welcome");

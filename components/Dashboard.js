@@ -12,7 +12,7 @@ function Dashboard({navigation}) {
     async function getUserInfo() {
       let doc = await firebase.firestore().collection("users").doc(currentUserUID).get();
       if (!doc.exists) {
-        Alert.alert("No user data found.");
+        navigation.navigate("Welcome");
       } else {
         let dataObj = doc.data();
         setName(dataObj.name);

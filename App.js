@@ -6,7 +6,7 @@ import apiKeys from "./config/keys";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/SignUp";
 // import SignIn from "./components/SignIn";
-// import Loading from "./components/Loading";
+import Loading from "./components/Loading";
 import Dashboard from "./components/Dashboard";
 import styles from "./styles.js";
 
@@ -21,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name={'Loading'} component={Loading} options={{ headerShown: false }}/> */}
+        <Stack.Screen name={'Loading'} component={Loading} options={{ headerShown: false }}/>
         <Stack.Screen name='Welcome' component={Welcome} options={{ headerShown: false }}/>
         <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }}/>
         {/* <Stack.Screen name='SignIn' component={SignIn} options={{ headerShown: false }}/> */}

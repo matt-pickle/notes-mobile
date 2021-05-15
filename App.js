@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar} from "react-native";
+import {StatusBar, LogBox} from "react-native";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import * as firebase from "firebase";
@@ -14,6 +14,9 @@ import styles from "./styles.js";
 const Stack = createStackNavigator();
 
 export default function App() {
+  //Disable warning message
+  LogBox.ignoreLogs(["Setting a timer"]);
+
   if (!firebase.apps.length) {
     console.log('Connected with Firebase')
     firebase.initializeApp(apiKeys.firebaseConfig);

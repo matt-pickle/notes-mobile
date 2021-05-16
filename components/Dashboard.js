@@ -5,23 +5,42 @@ import * as firebase from "firebase";
 import {logOut} from "../api/firebase-methods";
 
 function Dashboard({navigation}) {
-  let currentUserUID = firebase.auth().currentUser.uid;
+  const currentUserUID = firebase.auth().currentUser.uid;
+  const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const [name, setName] = useState("");
+  const [theme, setTheme] = useState("light");
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     async function getUserInfo() {
-      let doc = await firebase.firestore().collection("users").doc(currentUserUID).get();
+      let doc = await userRef.get();
       if (!doc.exists) {
         navigation.navigate("Welcome");
       } else {
         let dataObj = doc.data();
         setName(dataObj.name);
+        setTheme(dataObj.theme);
+        setNotes(dataObj.notes);
       }
     }
     getUserInfo();
-  });
+  }, []);
 
-  function handlePress() {
+  function toggleTheme() {
+    if (theme === "light") {
+      userRef.update({
+        theme: "dark"
+      });
+      setTheme("dark");
+    } else {
+      userRef.update({
+        theme: "light"
+      });
+      setTheme("light");
+    } 
+  }
+
+  function handleLogOut() {
     logOut();
     navigation.replace("Welcome");
   }
@@ -30,7 +49,11 @@ function Dashboard({navigation}) {
     <View>
       <Text>Dashboard</Text>
       <Text>Hi, {name}!</Text>
-      <TouchableOpacity onPress={handlePress}>
+      <Text>{theme} theme</Text>
+      <TouchableOpacity onPress={toggleTheme}>
+        <Text>Change Theme</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleLogOut}>
         <Text>Log Out</Text>
       </TouchableOpacity>
     </View>

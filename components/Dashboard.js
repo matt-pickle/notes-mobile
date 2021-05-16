@@ -4,13 +4,16 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 import * as firebase from "firebase";
 import {logOut} from "../api/firebase-methods";
 import NotesList from "./NotesList";
+import NoteEditor from "./NoteEditor";
 
 function Dashboard({navigation}) {
   const currentUserUID = firebase.auth().currentUser.uid;
   const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const [name, setName] = useState("");
   const [theme, setTheme] = useState("light");
-  const [notes, setNotes] = useState();
+  const [notes, setNotes] = useState(null);
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [displayedNote, setDisplayedNote] = useState(null);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -47,11 +50,33 @@ function Dashboard({navigation}) {
     } 
   }
 
+  function handleOpenEditor(id) {
+    const noteToDisplay = notes.find(item => {
+      return item.id === id;
+    });
+    setDisplayedNote(noteToDisplay);
+    setIsEditorOpen(true);
+  }
+
+  function handleCloseEditor() {
+    setIsEditorOpen(false);
+  }
+
   function handleLogOut() {
     logOut();
     navigation.replace("Welcome");
   }
   
+  const notesList = <NotesList 
+    notes={notes}
+    handleOpenEditor={handleOpenEditor}
+    />;
+
+  const noteEditor = <NoteEditor
+    displayedNote={displayedNote}
+    handleCloseEditor={handleCloseEditor}
+    />;
+
   return (
     <View>
       <Text>Dashboard</Text>
@@ -63,7 +88,13 @@ function Dashboard({navigation}) {
       <TouchableOpacity onPress={handleLogOut}>
         <Text>Log Out</Text>
       </TouchableOpacity>
-      {notes ? <NotesList notes={notes} /> : null}
+      {
+        notes && !isEditorOpen ?
+        notesList : 
+        notes && isEditorOpen ?
+        noteEditor :
+        null
+      }
       
     </View>
   );

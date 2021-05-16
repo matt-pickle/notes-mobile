@@ -7,8 +7,10 @@ function NotesList(props) {
     return (
       <NotesListItem
         key={item.id}
+        id={item.id}
         title={item.title}
         lastUpdated={item.lastUpdated}
+        handleOpenEditor={props.handleOpenEditor}
       />
     );
   });  

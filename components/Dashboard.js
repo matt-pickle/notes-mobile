@@ -21,7 +21,13 @@ function Dashboard({navigation}) {
         let dataObj = doc.data();
         setName(dataObj.name);
         setTheme(dataObj.theme);
-        setNotes(dataObj.notes);
+        const parsedNotes = dataObj.notes.map(item => {
+          return JSON.parse(item);
+        });
+        const sortedNotes = parsedNotes.sort((a, b) => {
+          return a.lastUpdated < b.lastUpdated;
+        });
+        setNotes(sortedNotes);
       }
     }
     getUserInfo();

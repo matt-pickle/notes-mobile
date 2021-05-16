@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, Alert} from "react-native";
+import {View, Text} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import * as firebase from "firebase";
 import {logOut} from "../api/firebase-methods";
+import NotesList from "./NotesList";
 
 function Dashboard({navigation}) {
   const currentUserUID = firebase.auth().currentUser.uid;
   const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const [name, setName] = useState("");
   const [theme, setTheme] = useState("light");
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState();
 
   useEffect(() => {
     async function getUserInfo() {
@@ -56,6 +57,8 @@ function Dashboard({navigation}) {
       <TouchableOpacity onPress={handleLogOut}>
         <Text>Log Out</Text>
       </TouchableOpacity>
+      {notes ? <NotesList notes={notes} /> : null}
+      
     </View>
   );
 

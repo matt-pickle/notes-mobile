@@ -1,6 +1,7 @@
 import React from "react";
-import {ImageBackground, View, Text} from "react-native";
+import {View, Text} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
+
 
 function Welcome({navigation}) {
   return (

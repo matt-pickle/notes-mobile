@@ -11,7 +11,9 @@ export function registration(name, email, password) {
         user.sendEmailVerification();
         firebase.firestore().collection("users").doc(user.uid).set({
           email: user.email,
-          name: name
+          name: name,
+          theme: "light",
+          notes: []
         });
       }
     });

@@ -1,14 +1,26 @@
-import React from "react";
-import {View, Text} from "react-native";
+import React, {useState} from "react";
+import {View, Text, TextInput} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 
 function NoteEditor(props) {
+  const [body, setBody] = useState(props.displayedNote.body);
+  const [title, setTitle] = useState(props.displayedNote.title);
+
   return (
     <View>
-      <Text>{props.displayedNote.title}</Text>
-      <Text>{props.displayedNote.body}</Text>
+      <TextInput
+        value={title}
+        onChangeText={title => setTitle(title)}
+      />
+      <TextInput
+        value={body}
+        onChangeText={body => setBody(body)}
+      />
       <TouchableOpacity onPress={props.handleCloseEditor}>
         <Text>Close</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => props.handleSaveNote(title, body)}>
+        <Text>Save</Text>
       </TouchableOpacity>
     </View>
   );

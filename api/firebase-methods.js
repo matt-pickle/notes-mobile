@@ -37,3 +37,11 @@ export async function logOut() {
     Alert.alert("Error!", err.message);
   }
 }
+
+export async function saveNotes(userRef, updatedNotesArr) {
+  try {
+    await userRef.update({notes: updatedNotesArr});
+  } catch(err) {
+    Alert.alert("Error!", err.message);
+  }
+}

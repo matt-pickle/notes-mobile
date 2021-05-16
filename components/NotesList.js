@@ -3,7 +3,10 @@ import {ScrollView, Text} from "react-native";
 import NotesListItem from "./NotesListItem";
 
 function NotesList(props) {
-  const notesListItems = props.notes.map(item => {
+  const sortedNotes = props.notes.sort((a, b) => {
+    return a.lastUpdated < b.lastUpdated;
+  });
+  const notesListItems = sortedNotes.map(item => {
     return (
       <NotesListItem
         key={item.id}

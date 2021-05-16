@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {View, Text} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import * as firebase from "firebase";
-import {logOut} from "../api/firebase-methods";
+import {logOut, saveNotes} from "../api/firebase-methods";
 import NotesList from "./NotesList";
 import NoteEditor from "./NoteEditor";
 
@@ -24,13 +24,7 @@ function Dashboard({navigation}) {
         let dataObj = doc.data();
         setName(dataObj.name);
         setTheme(dataObj.theme);
-        const parsedNotes = dataObj.notes.map(item => {
-          return JSON.parse(item);
-        });
-        const sortedNotes = parsedNotes.sort((a, b) => {
-          return a.lastUpdated < b.lastUpdated;
-        });
-        setNotes(sortedNotes);
+        setNotes(dataObj.notes);
       }
     }
     getUserInfo();
@@ -62,6 +56,21 @@ function Dashboard({navigation}) {
     setIsEditorOpen(false);
   }
 
+  function handleSaveNote(title, body) {
+    const updatedNotesArr = notes.filter(item => {
+      return item.id !== displayedNote.id; 
+    });
+    const timestamp = Date.now();
+    updatedNotesArr.push({
+      id: displayedNote.id,
+      title: title,
+      body: body,
+      lastUpdated: timestamp
+    });
+    setNotes(updatedNotesArr);
+    saveNotes(userRef, updatedNotesArr);
+  }
+
   function handleLogOut() {
     logOut();
     navigation.replace("Welcome");
@@ -75,6 +84,7 @@ function Dashboard({navigation}) {
   const noteEditor = <NoteEditor
     displayedNote={displayedNote}
     handleCloseEditor={handleCloseEditor}
+    handleSaveNote={handleSaveNote}
     />;
 
   return (
@@ -95,7 +105,6 @@ function Dashboard({navigation}) {
         noteEditor :
         null
       }
-      
     </View>
   );
 

@@ -3,8 +3,8 @@ import {View, Text, TextInput} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 
 function NoteEditor(props) {
-  const [body, setBody] = useState(props.displayedNote.body);
-  const [title, setTitle] = useState(props.displayedNote.title);
+  const [body, setBody] = useState(props.displayedNote ? props.displayedNote.body : "");
+  const [title, setTitle] = useState(props.displayedNote ? props.displayedNote.title : "New Note");
 
   return (
     <View>

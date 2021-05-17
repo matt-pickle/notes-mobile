@@ -57,12 +57,22 @@ function Dashboard({navigation}) {
   }
 
   function handleSaveNote(title, body) {
-    const updatedNotesArr = notes.filter(item => {
-      return item.id !== displayedNote.id; 
-    });
+    let updatedNotesArr = [];
+    let id = null;
     const timestamp = Date.now();
+
+    if (displayedNote) {
+      updatedNotesArr = notes.filter(item => {
+        return item.id !== displayedNote.id; 
+      });
+      id = displayedNote.id;
+    } else {
+      updatedNotesArr = notes;
+      id = timestamp;
+    }
+    
     updatedNotesArr.push({
-      id: displayedNote.id,
+      id: id,
       title: title,
       body: body,
       lastUpdated: timestamp
@@ -97,6 +107,9 @@ function Dashboard({navigation}) {
       </TouchableOpacity>
       <TouchableOpacity onPress={handleLogOut}>
         <Text>Log Out</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => setIsEditorOpen(true)}>
+        <Text>Create New Note</Text>
       </TouchableOpacity>
       {
         notes && !isEditorOpen ?

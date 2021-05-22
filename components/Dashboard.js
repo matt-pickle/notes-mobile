@@ -11,6 +11,7 @@ function Dashboard({navigation}) {
   const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const [name, setName] = useState("");
   const [theme, setTheme] = useState("light");
+  const [sortBy, setSortBy] = useState("modified-desc");
   const [notes, setNotes] = useState(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [displayedNote, setDisplayedNote] = useState(null);
@@ -24,6 +25,7 @@ function Dashboard({navigation}) {
         let dataObj = doc.data();
         setName(dataObj.name);
         setTheme(dataObj.theme);
+        setSortBy(dataObj.sortBy);
         setNotes(dataObj.notes);
       }
     }
@@ -42,6 +44,13 @@ function Dashboard({navigation}) {
       });
       setTheme("light");
     } 
+  }
+
+  function handleChangeSortBy(newSortBy) {
+    setSortBy(newSortBy)
+    userRef.update({
+      sortBy: newSortBy
+    });
   }
 
   function handleOpenEditor(id) {
@@ -97,6 +106,8 @@ function Dashboard({navigation}) {
   
   const notesList = <NotesList 
     notes={notes}
+    sortBy={sortBy}
+    handleChangeSortBy={handleChangeSortBy}
     handleOpenEditor={handleOpenEditor}
     handleDeleteNote={handleDeleteNote}
   />;

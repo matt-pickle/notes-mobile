@@ -6,6 +6,11 @@ function NoteEditor(props) {
   const [body, setBody] = useState(props.displayedNote ? props.displayedNote.body : "");
   const [title, setTitle] = useState(props.displayedNote ? props.displayedNote.title : "New Note");
 
+  function handlePressDelete() {
+    props.handleDeleteNote(props.displayedNote.id);
+    props.handleCloseEditor();
+  }
+
   return (
     <View>
       <TextInput
@@ -21,6 +26,9 @@ function NoteEditor(props) {
       </TouchableOpacity>
       <TouchableOpacity onPress={() => props.handleSaveNote(title, body)}>
         <Text>Save</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handlePressDelete}>
+        <Text>Delete</Text>
       </TouchableOpacity>
     </View>
   );

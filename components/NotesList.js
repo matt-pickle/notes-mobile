@@ -14,6 +14,7 @@ function NotesList(props) {
         title={item.title}
         lastUpdated={item.lastUpdated}
         handleOpenEditor={props.handleOpenEditor}
+        handleDeleteNote={props.handleDeleteNote}
       />
     );
   });  

@@ -54,6 +54,7 @@ function Dashboard({navigation}) {
 
   function handleCloseEditor() {
     setIsEditorOpen(false);
+    setDisplayedNote(null);
   }
 
   function handleSaveNote(title, body) {
@@ -81,6 +82,14 @@ function Dashboard({navigation}) {
     saveNotes(userRef, updatedNotesArr);
   }
 
+  function handleDeleteNote(id) {
+    let updatedNotesArr = notes.filter(item => {
+      return item.id !== id;
+    });
+    setNotes(updatedNotesArr);
+    saveNotes(userRef, updatedNotesArr);
+  }
+
   function handleLogOut() {
     logOut();
     navigation.replace("Welcome");
@@ -89,13 +98,15 @@ function Dashboard({navigation}) {
   const notesList = <NotesList 
     notes={notes}
     handleOpenEditor={handleOpenEditor}
-    />;
+    handleDeleteNote={handleDeleteNote}
+  />;
 
   const noteEditor = <NoteEditor
     displayedNote={displayedNote}
     handleCloseEditor={handleCloseEditor}
     handleSaveNote={handleSaveNote}
-    />;
+    handleDeleteNote={handleDeleteNote}
+  />;
 
   return (
     <View>

@@ -1,5 +1,6 @@
 import React from "react";
 import {View, ScrollView, Text} from "react-native";
+import {TouchableOpacity} from "react-native-gesture-handler";
 import {Picker} from "@react-native-picker/picker";
 import NotesListItem from "./NotesListItem";
 
@@ -56,6 +57,12 @@ function NotesList(props) {
 
   return (
     <View style={styles.listContainer}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={props.handleOpenEditor}
+      >
+        <Text style={styles.buttonText}>Create New Note</Text>
+      </TouchableOpacity>
       <Text style={styles.listButtonText}>Sort By: </Text>
       <Picker
         style={styles.listButton}

@@ -140,12 +140,6 @@ function Dashboard({navigation}) {
       >
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => setIsEditorOpen(true)}
-      >
-        <Text style={styles.buttonText}>Create New Note</Text>
-      </TouchableOpacity>
       {
         notes && !isEditorOpen ?
         notesList : 

@@ -66,11 +66,9 @@ function NotesList(props) {
         </TouchableOpacity>
         <Text style={styles.dashText}>Sort By: </Text>
         <Picker
-          style={styles.listButton}
+          style={styles.picker}
           selectedValue={props.sortBy}
-          onValueChange={value => {
-            props.handleChangeSortBy(value);
-          }}
+          onValueChange={value => props.handleChangeSortBy(value)}
         >
           <Picker.Item
             label="Last modified (descending)"

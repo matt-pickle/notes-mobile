@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {View, Text} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
+import {Picker} from "@react-native-picker/picker";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
 import NotesList from "./NotesList";
@@ -34,7 +35,7 @@ function Dashboard({navigation}) {
     getUserInfo();
   }, []);
 
-  function toggleTheme() {
+  function handleChangeTheme() {
     if (theme === "light") {
       userRef.update({
         theme: "dark"
@@ -127,13 +128,21 @@ function Dashboard({navigation}) {
     <View style={styles.dashContainer}>
       <Text style={styles.dashText}>Dashboard</Text>
       <Text style={styles.dashText}>Hi, {name}!</Text>
-      <Text style={styles.dashText}>{theme} theme</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={toggleTheme}
+      <Text style={styles.dashText}>Theme: </Text>
+      <Picker
+        style={styles.picker}
+        selectedValue={theme}
+        onValueChange={value => handleChangeTheme(value)}
       >
-        <Text style={styles.buttonText}>Change Theme</Text>
-      </TouchableOpacity>
+        <Picker.Item
+          label="Light"
+          value="light"
+        />
+        <Picker.Item
+          label="Dark"
+          value="dark"
+        />
+      </Picker>
       <TouchableOpacity
         style={styles.button}
         onPress={handleLogOut}

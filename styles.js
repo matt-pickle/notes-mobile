@@ -35,6 +35,11 @@ function createStyleSheet(theme) {
       color: buttonTextColor
     },
 
+    picker: {
+      backgroundColor: buttonColor,
+      color: buttonTextColor
+    },
+
     //DASHBOARD
 
     dashContainer: {
@@ -52,11 +57,6 @@ function createStyleSheet(theme) {
     listContainer: {
       width: "90%",
       alignSelf: "center"
-    },
-
-    listButton: {
-      backgroundColor: buttonColor,
-      color: buttonTextColor
     },
 
     listItem: {

@@ -109,6 +109,7 @@ function Dashboard({navigation}) {
   const notesList = <NotesList 
     notes={notes}
     sortBy={sortBy}
+    styles={styles}
     handleChangeSortBy={handleChangeSortBy}
     handleOpenEditor={handleOpenEditor}
     handleDeleteNote={handleDeleteNote}
@@ -116,33 +117,34 @@ function Dashboard({navigation}) {
 
   const noteEditor = <NoteEditor
     displayedNote={displayedNote}
+    styles={styles}
     handleCloseEditor={handleCloseEditor}
     handleSaveNote={handleSaveNote}
     handleDeleteNote={handleDeleteNote}
   />;
 
   return (
-    <View style={styles.dashBackground}>
+    <View style={styles.dashContainer}>
       <Text style={styles.dashText}>Dashboard</Text>
       <Text style={styles.dashText}>Hi, {name}!</Text>
       <Text style={styles.dashText}>{theme} theme</Text>
       <TouchableOpacity
-        style={styles.dashButton}
+        style={styles.button}
         onPress={toggleTheme}
       >
-        <Text style={styles.dashButtonText}>Change Theme</Text>
+        <Text style={styles.buttonText}>Change Theme</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.dashButton}
+        style={styles.button}
         onPress={handleLogOut}
       >
-        <Text style={styles.dashButtonText}>Log Out</Text>
+        <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.dashButton}
+        style={styles.button}
         onPress={() => setIsEditorOpen(true)}
       >
-        <Text style={styles.dashButtonText}>Create New Note</Text>
+        <Text style={styles.buttonText}>Create New Note</Text>
       </TouchableOpacity>
       {
         notes && !isEditorOpen ?

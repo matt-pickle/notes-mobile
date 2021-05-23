@@ -3,31 +3,42 @@ import {StyleSheet} from 'react-native';
 
 
 function createStyleSheet(theme) {
-  let backgroundColor = "rgb(10,20,40)";
-  let dashTextColor = "white";
-  let dashButtonColor = "white";
-  let dashButtonTextColor = "rgb(10,20,40)";
+  let mainColor = "rgb(10,20,40)";
+  let accentColor = "white";
+  let dashTextColor = "black"
+  let textColor = "black"
 
   switch (theme) {
     case "dark":
-      backgroundColor = "rgb(10,20,40)";
-      dashTextColor = "white";
-      dashButtonColor = "white";
-      dashButtonTextColor = "rgb(10,20,40)";
+      mainColor = "rgb(10,20,40)";
+      accentColor = "white";
+      dashTextColor = "white"
+      textColor = "black"
       break;
     case "light":
-      backgroundColor = "rgb(200,200,200)";
-      dashTextColor = "black";
-      dashButtonColor = "black";
-      dashButtonTextColor = "rgb(200,200,200)";
+      mainColor = "rgb(200,200,200)";
+      accentColor = "white";
+      dashTextColor = "black"
+      textColor = "black"
       break;
   }
 
   return StyleSheet.create({
 
+    //BUTTONS
+    
+    button: {
+      backgroundColor: accentColor,
+    },
+
+    buttonText: {
+      color: textColor
+    },
+
     //DASHBOARD
-    dashBackground: {
-      backgroundColor: backgroundColor,
+
+    dashContainer: {
+      backgroundColor: mainColor,
       width: "100%",
       height: "100%"
     },
@@ -36,12 +47,44 @@ function createStyleSheet(theme) {
       color: dashTextColor
     },
     
-    dashButton: {
-      backgroundColor: dashButtonColor,
+    //NOTES LIST
+    
+    listContainer: {
+      width: "90%",
+      alignSelf: "center"
     },
 
-    dashButtonText: {
-      color: dashButtonTextColor
+    listButton: {
+      backgroundColor: mainColor,
+      color: dashTextColor
+    },
+
+    listButtonText: {
+      color: dashTextColor
+    },
+
+    listItem: {
+      backgroundColor: accentColor
+    },
+
+    listItemText: {
+      color: textColor
+    },
+
+    //NOTES EDITOR
+
+    editorContainer: {
+      backgroundColor: mainColor
+    },
+
+    titleInputBox: {
+      backgroundColor: accentColor,
+      color: textColor
+    },
+
+    bodyInputBox: {
+      backgroundColor: accentColor,
+      color: textColor
     }
   });
 }

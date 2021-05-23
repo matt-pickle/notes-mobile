@@ -5,6 +5,7 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 function NoteEditor(props) {
   const [body, setBody] = useState(props.displayedNote ? props.displayedNote.body : "");
   const [title, setTitle] = useState(props.displayedNote ? props.displayedNote.title : "New Note");
+  const styles = props.styles;
 
   function handlePressDelete() {
     props.handleDeleteNote(props.displayedNote.id);
@@ -12,23 +13,35 @@ function NoteEditor(props) {
   }
 
   return (
-    <View>
+    <View style={styles.editorContainer}>
+      <Text style={styles.dashText}>Title: </Text>
       <TextInput
+        style={styles.titleInputBox}
         value={title}
         onChangeText={title => setTitle(title)}
       />
       <TextInput
+        style={styles.bodyInputBox}
         value={body}
         onChangeText={body => setBody(body)}
       />
-      <TouchableOpacity onPress={props.handleCloseEditor}>
-        <Text>Close</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={props.handleCloseEditor}
+      >
+        <Text style={styles.buttonText}>Close</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.handleSaveNote(title, body)}>
-        <Text>Save</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => props.handleSaveNote(title, body)}
+      >
+        <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handlePressDelete}>
-        <Text>Delete</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handlePressDelete}
+      >
+        <Text style={styles.buttonText}>Delete</Text>
       </TouchableOpacity>
     </View>
   );

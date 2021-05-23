@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import {View, ScrollView, Text} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import NotesListItem from "./NotesListItem";
 
 function NotesList(props) {
+  const styles = props.styles;
   let sortedNotes = [];
 
   switch (props.sortBy) {
@@ -46,6 +47,7 @@ function NotesList(props) {
         id={item.id}
         title={item.title}
         lastUpdated={item.lastUpdated}
+        styles={styles}
         handleOpenEditor={props.handleOpenEditor}
         handleDeleteNote={props.handleDeleteNote}
       />
@@ -53,9 +55,10 @@ function NotesList(props) {
   });  
 
   return (
-    <View>
-      <Text>Sort By: </Text>
+    <View style={styles.listContainer}>
+      <Text style={styles.listButtonText}>Sort By: </Text>
       <Picker
+        style={styles.listButton}
         selectedValue={props.sortBy}
         onValueChange={value => {
           props.handleChangeSortBy(value);

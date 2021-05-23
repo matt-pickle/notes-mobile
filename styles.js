@@ -4,22 +4,22 @@ import {StyleSheet} from 'react-native';
 
 function createStyleSheet(theme) {
   let mainColor = "rgb(10,20,40)";
-  let accentColor = "white";
-  let dashTextColor = "black"
-  let textColor = "black"
+  let buttonColor = "white";
+  let dashTextColor = "white"
+  let buttonTextColor = "black"
 
   switch (theme) {
     case "dark":
       mainColor = "rgb(10,20,40)";
-      accentColor = "white";
+      buttonColor = "white";
       dashTextColor = "white"
-      textColor = "black"
+      buttonTextColor = "black"
       break;
     case "light":
       mainColor = "rgb(200,200,200)";
-      accentColor = "white";
+      buttonColor = "white";
       dashTextColor = "black"
-      textColor = "black"
+      buttonTextColor = "black"
       break;
   }
 
@@ -28,11 +28,11 @@ function createStyleSheet(theme) {
     //BUTTONS
     
     button: {
-      backgroundColor: accentColor,
+      backgroundColor: buttonColor,
     },
 
     buttonText: {
-      color: textColor
+      color: buttonTextColor
     },
 
     //DASHBOARD
@@ -55,20 +55,16 @@ function createStyleSheet(theme) {
     },
 
     listButton: {
-      backgroundColor: mainColor,
-      color: dashTextColor
-    },
-
-    listButtonText: {
-      color: dashTextColor
+      backgroundColor: buttonColor,
+      color: buttonTextColor
     },
 
     listItem: {
-      backgroundColor: accentColor
+      backgroundColor: buttonColor
     },
 
     listItemText: {
-      color: textColor
+      color: buttonTextColor
     },
 
     //NOTES EDITOR
@@ -78,13 +74,13 @@ function createStyleSheet(theme) {
     },
 
     titleInputBox: {
-      backgroundColor: accentColor,
-      color: textColor
+      backgroundColor: buttonColor,
+      color: buttonTextColor
     },
 
     bodyInputBox: {
-      backgroundColor: accentColor,
-      color: textColor
+      backgroundColor: buttonColor,
+      color: buttonTextColor
     }
   });
 }

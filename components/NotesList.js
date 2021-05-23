@@ -57,45 +57,47 @@ function NotesList(props) {
 
   return (
     <View style={styles.listContainer}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={props.handleOpenEditor}
-      >
-        <Text style={styles.buttonText}>Create New Note</Text>
-      </TouchableOpacity>
-      <Text style={styles.listButtonText}>Sort By: </Text>
-      <Picker
-        style={styles.listButton}
-        selectedValue={props.sortBy}
-        onValueChange={value => {
-          props.handleChangeSortBy(value);
-        }}
-      >
-        <Picker.Item
-          label="Last modified (descending)"
-          value="modified-desc"
-        />
-        <Picker.Item
-          label="Last modified (ascending)"
-          value="modified-asc"
-        />
-        <Picker.Item
-          label="Date created (descending)"
-          value="created-desc"
-        />
-        <Picker.Item
-          label="Date created (ascending)"
-          value="created-asc"
-        />
-        <Picker.Item
-          label="Alphabetical"
-          value="alph"
-        />
-        <Picker.Item
-          label="Reverse alphabetical"
-          value="alph-reverse"
-        />
-      </Picker>
+      <View style={styles.listButtonsContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={props.handleOpenEditor}
+        >
+          <Text style={styles.buttonText}>Create New Note</Text>
+        </TouchableOpacity>
+        <Text style={styles.dashText}>Sort By: </Text>
+        <Picker
+          style={styles.listButton}
+          selectedValue={props.sortBy}
+          onValueChange={value => {
+            props.handleChangeSortBy(value);
+          }}
+        >
+          <Picker.Item
+            label="Last modified (descending)"
+            value="modified-desc"
+          />
+          <Picker.Item
+            label="Last modified (ascending)"
+            value="modified-asc"
+          />
+          <Picker.Item
+            label="Date created (descending)"
+            value="created-desc"
+          />
+          <Picker.Item
+            label="Date created (ascending)"
+            value="created-asc"
+          />
+          <Picker.Item
+            label="Alphabetical"
+            value="alph"
+          />
+          <Picker.Item
+            label="Reverse alphabetical"
+            value="alph-reverse"
+          />
+        </Picker>
+      </View>
       <ScrollView>
         {notesListItems}
       </ScrollView>

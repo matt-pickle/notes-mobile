@@ -126,29 +126,32 @@ function Dashboard({navigation}) {
 
   return (
     <View style={styles.dashContainer}>
-      <Text style={styles.dashText}>Dashboard</Text>
-      <Text style={styles.dashText}>Hi, {name}!</Text>
-      <Text style={styles.dashText}>Theme: </Text>
-      <Picker
-        style={styles.picker}
-        selectedValue={theme}
-        onValueChange={value => handleChangeTheme(value)}
-      >
-        <Picker.Item
-          label="Light"
-          value="light"
-        />
-        <Picker.Item
-          label="Dark"
-          value="dark"
-        />
-      </Picker>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleLogOut}
-      >
-        <Text style={styles.buttonText}>Log Out</Text>
-      </TouchableOpacity>
+      <View style={styles.topRowContainer}>
+        <Text style={styles.dashText}>{name}'s Notes</Text>
+        <View style={styles.themeSwitchContainer}>
+          <Text style={styles.dashText}>Theme: </Text>
+          <Picker
+            style={styles.themePicker}
+            selectedValue={theme}
+            onValueChange={value => handleChangeTheme(value)}
+          >
+            <Picker.Item
+              label="Light"
+              value="light"
+            />
+            <Picker.Item
+              label="Dark"
+              value="dark"
+            />
+          </Picker>
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleLogOut}
+        >
+          <Text style={styles.buttonText}>Log Out</Text>
+        </TouchableOpacity>
+      </View>
       {
         notes && !isEditorOpen ?
         notesList : 

@@ -9,7 +9,6 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import Loading from "./components/Loading";
 import Dashboard from "./components/Dashboard";
-import styles from "./styles.js";
 
 const Stack = createStackNavigator();
 

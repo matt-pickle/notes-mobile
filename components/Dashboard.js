@@ -5,6 +5,7 @@ import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
 import NotesList from "./NotesList";
 import NoteEditor from "./NoteEditor";
+import {createStyleSheet} from "../styles.js";
 
 function Dashboard({navigation}) {
   const currentUserUID = firebase.auth().currentUser.uid;
@@ -15,6 +16,7 @@ function Dashboard({navigation}) {
   const [notes, setNotes] = useState(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [displayedNote, setDisplayedNote] = useState(null);
+  const styles = createStyleSheet(theme);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -120,18 +122,27 @@ function Dashboard({navigation}) {
   />;
 
   return (
-    <View>
-      <Text>Dashboard</Text>
-      <Text>Hi, {name}!</Text>
-      <Text>{theme} theme</Text>
-      <TouchableOpacity onPress={toggleTheme}>
-        <Text>Change Theme</Text>
+    <View style={styles.dashBackground}>
+      <Text style={styles.dashText}>Dashboard</Text>
+      <Text style={styles.dashText}>Hi, {name}!</Text>
+      <Text style={styles.dashText}>{theme} theme</Text>
+      <TouchableOpacity
+        style={styles.dashButton}
+        onPress={toggleTheme}
+      >
+        <Text style={styles.dashButtonText}>Change Theme</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleLogOut}>
-        <Text>Log Out</Text>
+      <TouchableOpacity
+        style={styles.dashButton}
+        onPress={handleLogOut}
+      >
+        <Text style={styles.dashButtonText}>Log Out</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setIsEditorOpen(true)}>
-        <Text>Create New Note</Text>
+      <TouchableOpacity
+        style={styles.dashButton}
+        onPress={() => setIsEditorOpen(true)}
+      >
+        <Text style={styles.dashButtonText}>Create New Note</Text>
       </TouchableOpacity>
       {
         notes && !isEditorOpen ?
@@ -144,7 +155,5 @@ function Dashboard({navigation}) {
   );
 
 }
-
-
 
 export default Dashboard;

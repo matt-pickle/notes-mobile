@@ -126,7 +126,7 @@ function Dashboard({navigation}) {
   return (
     <View style={styles.dashContainer}>
       <View style={styles.dashTopRowContainer}>
-        <Text style={styles.dashText}>{name}'s Notes</Text>
+        <Text style={styles.dashHeader}>{name}'s Notes</Text>
         <TouchableOpacity
           onPress={() => setIsSettingsVisible(true)}
         >

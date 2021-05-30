@@ -62,20 +62,20 @@ function createStyleSheet(theme) {
 
     modalText: {
       color: buttonTextColor,
-      fontSize: 16,
+      fontSize: 18,
       fontFamily: lightFont
     },
 
     modalTopRowContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
-      marginBottom: 15
+      marginBottom: 20
     },
 
     themeSwitchContainer: {
       flexDirection: "row",
       alignItems: "center",
-      marginBottom: 15
+      marginBottom: 20
     },
 
     themePicker: {
@@ -87,12 +87,12 @@ function createStyleSheet(theme) {
     sortBySwitchContainer: {
       flexDirection: "row",
       alignItems: "center",
-      marginBottom: 15
+      marginBottom: 20
     },
 
     sortByPicker: {
       color: buttonTextColor,
-      width: 230,
+      width: 200,
       height: 25
     },
 
@@ -111,10 +111,17 @@ function createStyleSheet(theme) {
       justifyContent: "space-between",
       marginBottom: 15
     },
+
+    dashHeader: {
+      color: dashTextColor,
+      fontFamily: boldFont,
+      fontSize: 24
+    },
     
     dashText: {
       color: dashTextColor,
-      fontFamily: lightFont
+      fontFamily: lightFont,
+      fontSize: 18
     },
     
     //NOTES LIST
@@ -146,17 +153,19 @@ function createStyleSheet(theme) {
     listItem: {
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
       backgroundColor: buttonColor,
-      height: 30,
-      padding: 5,
-      marginBottom: 5,
+      height: 35,
+      paddingHorizontal: 10,
+      marginBottom: 10,
       marginHorizontal: 5,
       elevation: 5
     },
 
     listItemText: {
       color: buttonTextColor,
-      fontFamily: lightFont
+      fontFamily: lightFont,
+      fontSize: 18
     },
 
     listItemDeleteButton: {

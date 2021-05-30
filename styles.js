@@ -29,11 +29,66 @@ function createStyleSheet(theme) {
     
     button: {
       backgroundColor: buttonColor,
-      width: 50
+      width: 50,
+      elevation: 10
     },
 
     buttonText: {
       color: buttonTextColor
+    },
+
+    //SETTINGS MODAL
+
+    settingsModal: {
+      alignSelf: "center",
+      flexDirection: "column",
+      backgroundColor: buttonColor,
+      width: "80%",
+      paddingTop: 10,
+      paddingHorizontal: 15,
+      paddingBottom: 15,
+      marginTop: 50,
+      elevation: 10
+    },
+
+    modalHeader: {
+      color: buttonTextColor,
+      fontSize: 24
+    },
+
+    modalText: {
+      color: buttonTextColor,
+      fontSize: 16
+    },
+
+    modalTopRowContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginBottom: 15
+    },
+
+    themeSwitchContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      marginBottom: 15
+    },
+
+    themePicker: {
+      color: buttonTextColor,
+      width: 100,
+      height: 25
+    },
+
+    sortBySwitchContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      marginBottom: 15
+    },
+
+    sortByPicker: {
+      color: buttonTextColor,
+      width: 230,
+      height: 25
     },
 
     //DASHBOARD
@@ -46,7 +101,7 @@ function createStyleSheet(theme) {
       padding: 15
     },
 
-    topRowContainer: {
+    dashTopRowContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
       marginBottom: 15
@@ -54,18 +109,6 @@ function createStyleSheet(theme) {
     
     dashText: {
       color: dashTextColor
-    },
-
-    themeSwitchContainer: {
-      flexDirection: "row",
-      backgroundColor: "red"
-    },
-
-    themePicker: {
-      backgroundColor: buttonColor,
-      color: buttonTextColor,
-      width: 60,
-      height: 25
     },
     
     //NOTES LIST
@@ -92,18 +135,6 @@ function createStyleSheet(theme) {
       lineHeight: 60
     },
 
-    sortBySwitchContainer: {
-      flexDirection: "row",
-      marginBottom: 10
-    },
-
-    sortByPicker: {
-      backgroundColor: buttonColor,
-      color: buttonTextColor,
-      width: 215,
-      height: 25
-    },
-
     //LIST ITEM
 
     listItem: {
@@ -112,7 +143,9 @@ function createStyleSheet(theme) {
       backgroundColor: buttonColor,
       height: 30,
       padding: 5,
-      marginBottom: 5
+      marginBottom: 5,
+      marginHorizontal: 5,
+      elevation: 5
     },
 
     listItemText: {

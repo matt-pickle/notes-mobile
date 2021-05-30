@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {View, Text} from "react-native";
-import {TouchableOpacity} from "react-native-gesture-handler";
+import {View, Text, Modal, TouchableOpacity} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
@@ -17,6 +16,7 @@ function Dashboard({navigation}) {
   const [notes, setNotes] = useState(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [displayedNote, setDisplayedNote] = useState(null);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
   const styles = createStyleSheet(theme);
 
   useEffect(() => {
@@ -111,7 +111,6 @@ function Dashboard({navigation}) {
     notes={notes}
     sortBy={sortBy}
     styles={styles}
-    handleChangeSortBy={handleChangeSortBy}
     handleOpenEditor={handleOpenEditor}
     handleDeleteNote={handleDeleteNote}
   />;
@@ -128,6 +127,23 @@ function Dashboard({navigation}) {
     <View style={styles.dashContainer}>
       <View style={styles.topRowContainer}>
         <Text style={styles.dashText}>{name}'s Notes</Text>
+        <TouchableOpacity
+          onPress={() => setIsSettingsVisible(true)}
+        >
+          <Text>Settings</Text>
+        </TouchableOpacity>
+      </View>
+      <Modal
+        animationType="slide"
+        visible={isSettingsVisible}
+        transparent={true}
+        onRequestClose={() => setIsSettingsVisible(false)}
+      >
+        <TouchableOpacity
+          onPress={() => setIsSettingsVisible(false)}
+        >
+          <Text style={styles.dashText}>X</Text>
+        </TouchableOpacity>
         <View style={styles.themeSwitchContainer}>
           <Text style={styles.dashText}>Theme: </Text>
           <Picker
@@ -145,13 +161,46 @@ function Dashboard({navigation}) {
             />
           </Picker>
         </View>
+        <View style={styles.sortBySwitchContainer}>
+          <Text style={styles.dashText}>Sort By: </Text>
+          <Picker
+            style={styles.sortByPicker}
+            selectedValue={sortBy}
+            onValueChange={value => handleChangeSortBy(value)}
+          >
+            <Picker.Item
+              label="Last modified (descending)"
+              value="modified-desc"
+            />
+            <Picker.Item
+              label="Last modified (ascending)"
+              value="modified-asc"
+            />
+            <Picker.Item
+              label="Date created (descending)"
+              value="created-desc"
+            />
+            <Picker.Item
+              label="Date created (ascending)"
+              value="created-asc"
+            />
+            <Picker.Item
+              label="Alphabetical"
+              value="alph"
+            />
+            <Picker.Item
+              label="Reverse alphabetical"
+              value="alph-reverse"
+            />
+          </Picker>
+        </View>
         <TouchableOpacity
           style={styles.button}
           onPress={handleLogOut}
         >
           <Text style={styles.buttonText}>Log Out</Text>
         </TouchableOpacity>
-      </View>
+      </Modal>
       {
         notes && !isEditorOpen ?
         notesList : 

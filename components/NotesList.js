@@ -1,7 +1,6 @@
 import React from "react";
 import {View, ScrollView, Text} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
-import {Picker} from "@react-native-picker/picker";
 import NotesListItem from "./NotesListItem";
 
 function NotesList(props) {
@@ -64,39 +63,6 @@ function NotesList(props) {
         >
           <Text style={styles.createNoteButtonText}>+</Text>
         </TouchableOpacity>
-        <View style={styles.sortBySwitchContainer}>
-          <Text style={styles.dashText}>Sort By: </Text>
-          <Picker
-            style={styles.sortByPicker}
-            selectedValue={props.sortBy}
-            onValueChange={value => props.handleChangeSortBy(value)}
-          >
-            <Picker.Item
-              label="Last modified (descending)"
-              value="modified-desc"
-            />
-            <Picker.Item
-              label="Last modified (ascending)"
-              value="modified-asc"
-            />
-            <Picker.Item
-              label="Date created (descending)"
-              value="created-desc"
-            />
-            <Picker.Item
-              label="Date created (ascending)"
-              value="created-asc"
-            />
-            <Picker.Item
-              label="Alphabetical"
-              value="alph"
-            />
-            <Picker.Item
-              label="Reverse alphabetical"
-              value="alph-reverse"
-            />
-          </Picker>
-        </View>
       </View>
       <ScrollView>
         {notesListItems}

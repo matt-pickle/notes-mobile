@@ -134,8 +134,8 @@ function createStyleSheet(theme) {
     createNoteButton: {
       alignSelf: "center",
       backgroundColor: buttonColor,
-      width: 40,
-      height: 40,
+      width: 50,
+      height: 50,
       alignItems: "center",
       justifyContent: "center",
       borderRadius: 100,

@@ -56,14 +56,12 @@ function NotesList(props) {
 
   return (
     <View style={styles.listContainer}>
-      <View style={styles.listButtonsContainer}>
-        <TouchableOpacity
+      <TouchableOpacity
           style={styles.createNoteButton}
           onPress={props.handleOpenEditor}
         >
           <Text style={styles.createNoteButtonText}>+</Text>
-        </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
       <ScrollView>
         {notesListItems}
       </ScrollView>

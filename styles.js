@@ -5,21 +5,23 @@ import {StyleSheet} from 'react-native';
 function createStyleSheet(theme) {
   let mainColor = "rgb(10,20,40)";
   let buttonColor = "rgb(200,200,210)";
-  let dashTextColor = "rgb(200,200,210)"
-  let buttonTextColor = "rgb(10,20,40)"
+  let dashTextColor = "rgb(200,200,210)";
+  let buttonTextColor = "rgb(10,20,40)";
+  let lightFont = "Ubuntu_400Regular";
+  let boldFont = "Ubuntu_700Bold";
 
   switch (theme) {
     case "dark":
       mainColor = "rgb(10,20,40)";
       buttonColor = "rgb(200,200,210)";
-      dashTextColor = "rgb(200,200,210)"
-      buttonTextColor = "rgb(10,20,40)"
+      dashTextColor = "rgb(200,200,210)";
+      buttonTextColor = "rgb(10,20,40)";
       break;
     case "light":
       mainColor = "rgb(200,200,200)";
       buttonColor = "white";
-      dashTextColor = "black"
-      buttonTextColor = "black"
+      dashTextColor = "black";
+      buttonTextColor = "black";
       break;
   }
 
@@ -34,7 +36,8 @@ function createStyleSheet(theme) {
     },
 
     buttonText: {
-      color: buttonTextColor
+      color: buttonTextColor,
+      fontFamily: lightFont
     },
 
     //SETTINGS MODAL
@@ -53,12 +56,14 @@ function createStyleSheet(theme) {
 
     modalHeader: {
       color: buttonTextColor,
-      fontSize: 24
+      fontSize: 24,
+      fontFamily: boldFont
     },
 
     modalText: {
       color: buttonTextColor,
-      fontSize: 16
+      fontSize: 16,
+      fontFamily: lightFont
     },
 
     modalTopRowContainer: {
@@ -108,7 +113,8 @@ function createStyleSheet(theme) {
     },
     
     dashText: {
-      color: dashTextColor
+      color: dashTextColor,
+      fontFamily: lightFont
     },
     
     //NOTES LIST
@@ -150,6 +156,7 @@ function createStyleSheet(theme) {
 
     listItemText: {
       color: buttonTextColor,
+      fontFamily: lightFont
     },
 
     listItemDeleteButton: {

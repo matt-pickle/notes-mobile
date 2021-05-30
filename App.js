@@ -1,5 +1,7 @@
 import React from 'react';
 import {StatusBar, LogBox} from "react-native";
+import AppLoading from "expo-app-loading";
+import {useFonts, Ubuntu_700Bold, Ubuntu_400Regular} from "@expo-google-fonts/ubuntu";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import * as firebase from "firebase";
@@ -21,16 +23,25 @@ export default function App() {
     firebase.initializeApp(apiKeys.firebaseConfig);
   }
 
-  return (
-    <NavigationContainer>
-      <StatusBar></StatusBar>
-      <Stack.Navigator>
-        <Stack.Screen name={'Loading'} component={Loading} options={{ headerShown: false }}/>
-        <Stack.Screen name='Welcome' component={Welcome} options={{ headerShown: false }}/>
-        <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }}/>
-        <Stack.Screen name='SignIn' component={SignIn} options={{ headerShown: false }}/>
-        <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  let [fontsLoaded] = useFonts({
+    Ubuntu_400Regular,
+    Ubuntu_700Bold
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <NavigationContainer>
+        <StatusBar></StatusBar>
+        <Stack.Navigator>
+          <Stack.Screen name={'Loading'} component={Loading} options={{ headerShown: false }}/>
+          <Stack.Screen name='Welcome' component={Welcome} options={{ headerShown: false }}/>
+          <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false }}/>
+          <Stack.Screen name='SignIn' component={SignIn} options={{ headerShown: false }}/>
+          <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }

@@ -1,6 +1,4 @@
-import {StyleSheet} from 'react-native';
-
-
+import {StyleSheet, Dimensions, StatusBar} from 'react-native';
 
 function createStyleSheet(theme) {
   let mainColor = "rgb(10,20,40)";
@@ -9,6 +7,7 @@ function createStyleSheet(theme) {
   let buttonTextColor = "rgb(10,20,40)";
   let lightFont = "Ubuntu_400Regular";
   let boldFont = "Ubuntu_700Bold";
+  const windowHeight = Dimensions.get("window").height - StatusBar.currentHeight;
 
   switch (theme) {
     case "dark":
@@ -102,7 +101,7 @@ function createStyleSheet(theme) {
       flexDirection: "column",
       backgroundColor: mainColor,
       width: "100%",
-      height: "100%",
+      height: windowHeight,
       padding: 15
     },
 
@@ -127,8 +126,15 @@ function createStyleSheet(theme) {
     //NOTES LIST
     
     listContainer: {
+      flexGrow: 1,
       width: "100%",
       alignSelf: "center"
+    },
+
+    list: {
+      flexGrow: 1,
+      maxHeight: windowHeight - 130,
+      marginBottom: 10
     },
 
     createNoteButton: {
@@ -138,8 +144,7 @@ function createStyleSheet(theme) {
       height: 50,
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: 100,
-      marginBottom: 15
+      borderRadius: 100
     },
 
     createNoteButtonText: {

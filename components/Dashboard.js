@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {View, Text, Modal, TouchableOpacity} from "react-native";
 import {Picker} from "@react-native-picker/picker";
+import {Ionicons} from "@expo/vector-icons";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
 import NotesList from "./NotesList";
@@ -128,7 +129,10 @@ function Dashboard({navigation}) {
         <TouchableOpacity
           onPress={() => setIsSettingsVisible(true)}
         >
-          <Text style={styles.dashText}>Settings</Text>
+          <Ionicons
+            name="settings-sharp"
+            style={styles.dashHeader}
+          />
         </TouchableOpacity>
       </View>
       <Modal

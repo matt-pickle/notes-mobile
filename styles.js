@@ -166,25 +166,42 @@ function createStyleSheet(theme) {
       color: buttonTextColor,
       fontFamily: lightFont,
       fontSize: 18
-    },
-
-    listItemDeleteButton: {
     },  
 
     //NOTES EDITOR
 
     editorContainer: {
+      flexGrow: 1,
       backgroundColor: mainColor
     },
 
     titleInputBox: {
       backgroundColor: buttonColor,
-      color: buttonTextColor
+      color: buttonTextColor,
+      fontFamily: lightFont,
+      fontSize: 20,
+      paddingHorizontal: 10,
+      marginTop: 5,
+      marginBottom: 15
     },
 
     bodyInputBox: {
+      flexGrow: 1,
       backgroundColor: buttonColor,
-      color: buttonTextColor
+      color: buttonTextColor,
+      fontFamily: lightFont,
+      fontSize: 18,
+      padding: 10,
+      marginBottom: 15
+    },
+
+    buttonRow: {
+      flexDirection: "row",
+      justifyContent: "space-between"
+    },
+
+    saveBtnContainer: {
+      flexDirection: "row"
     }
   });
 }

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {View, Text, TextInput, BackHandler} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
+import { Ionicons } from '@expo/vector-icons';
 
 function NoteEditor(props) {
   const [body, setBody] = useState(props.displayedNote ? props.displayedNote.body : "");
@@ -24,26 +25,37 @@ function NoteEditor(props) {
       <Text style={styles.dashText}>Title: </Text>
       <TextInput
         style={styles.titleInputBox}
+        maxLength={25}
         value={title}
         onChangeText={title => setTitle(title)}
       />
       <TextInput
         style={styles.bodyInputBox}
+        multiline={true}
+        textAlignVertical="top"
         value={body}
         onChangeText={body => setBody(body)}
       />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => props.handleSaveAndClose(title, body)}
-      >
-        <Text style={styles.buttonText}>Save</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => props.handleDeleteNote(props.displayedNote.id)}
-      >
-        <Text style={styles.buttonText}>Delete</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonRow}>
+        <TouchableOpacity
+          onPress={() => props.handleSaveAndClose(title, body)}
+          style={styles.saveBtnContainer}
+        >
+          <Ionicons
+            name="arrow-back"
+            style={styles.dashHeader}
+          />
+          <Text style={styles.dashText}>Save & Close</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => props.handleDeleteNote(props.displayedNote.id)}
+        >
+          <Ionicons
+            name="trash-outline"
+            style={styles.dashHeader}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

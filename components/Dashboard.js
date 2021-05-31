@@ -64,12 +64,7 @@ function Dashboard({navigation}) {
     setIsEditorOpen(true);
   }
 
-  function handleCloseEditor() {
-    setIsEditorOpen(false);
-    setDisplayedNote(null);
-  }
-
-  function handleSaveNote(title, body) {
+  function handleSaveAndClose(title, body) {
     let updatedNotesArr = [];
     let id = null;
     const timestamp = Date.now();
@@ -92,6 +87,8 @@ function Dashboard({navigation}) {
     });
     setNotes(updatedNotesArr);
     saveNotes(userRef, updatedNotesArr);
+    setIsEditorOpen(false);
+    setDisplayedNote(null);
   }
 
   function handleDeleteNote(id) {
@@ -100,6 +97,8 @@ function Dashboard({navigation}) {
     });
     setNotes(updatedNotesArr);
     saveNotes(userRef, updatedNotesArr);
+    setIsEditorOpen(false);
+    setDisplayedNote(null);
   }
 
   function handleLogOut() {
@@ -118,8 +117,7 @@ function Dashboard({navigation}) {
   const noteEditor = <NoteEditor
     displayedNote={displayedNote}
     styles={styles}
-    handleCloseEditor={handleCloseEditor}
-    handleSaveNote={handleSaveNote}
+    handleSaveAndClose={handleSaveAndClose}
     handleDeleteNote={handleDeleteNote}
   />;
 

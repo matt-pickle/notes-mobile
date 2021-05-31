@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {View, Text, TextInput} from "react-native";
+import React, {useState, useEffect} from "react";
+import {View, Text, TextInput, BackHandler} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 
 function NoteEditor(props) {
@@ -7,10 +7,17 @@ function NoteEditor(props) {
   const [title, setTitle] = useState(props.displayedNote ? props.displayedNote.title : "New Note");
   const styles = props.styles;
 
-  function handlePressDelete() {
-    props.handleDeleteNote(props.displayedNote.id);
-    props.handleCloseEditor();
-  }
+  //Make Android "Back" button save and close editor
+  useEffect(() => {
+    function backAction() {
+      props.handleSaveAndClose(title, body);
+      return true;
+    }
+
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () => backHandler.remove();
+  });
 
   return (
     <View style={styles.editorContainer}>
@@ -27,19 +34,13 @@ function NoteEditor(props) {
       />
       <TouchableOpacity
         style={styles.button}
-        onPress={props.handleCloseEditor}
-      >
-        <Text style={styles.buttonText}>Close</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => props.handleSaveNote(title, body)}
+        onPress={() => props.handleSaveAndClose(title, body)}
       >
         <Text style={styles.buttonText}>Save</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={handlePressDelete}
+        onPress={() => props.handleDeleteNote(props.displayedNote.id)}
       >
         <Text style={styles.buttonText}>Delete</Text>
       </TouchableOpacity>

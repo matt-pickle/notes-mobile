@@ -1,6 +1,7 @@
 import React from "react";
-import {View, Text} from "react-native";
+import {Text} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
+import { Ionicons } from '@expo/vector-icons';
 
 function NotesListItem(props) {
   const styles = props.styles;
@@ -11,10 +12,12 @@ function NotesListItem(props) {
     >
       <Text style={styles.listItemText}>{props.title}</Text>
       <TouchableOpacity
-        style={styles.listItemDeleteButton}
         onPress={() => props.handleDeleteNote(props.id)}
       >
-        <Text style={styles.listItemText}>Delete</Text>
+        <Ionicons
+          name="trash-outline"
+          style={styles.listItemIcon}
+        />
       </TouchableOpacity>
     </TouchableOpacity>
   );

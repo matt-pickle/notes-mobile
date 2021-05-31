@@ -168,6 +168,12 @@ function createStyleSheet(theme) {
       fontSize: 18
     },  
 
+    listItemIcon: {
+      color: buttonTextColor,
+      fontFamily: lightFont,
+      fontSize: 24
+    },
+
     //NOTES EDITOR
 
     editorContainer: {

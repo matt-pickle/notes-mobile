@@ -133,7 +133,7 @@ function createStyleSheet(theme) {
 
     list: {
       flexGrow: 1,
-      maxHeight: windowHeight - 130,
+      maxHeight: windowHeight - 135,
       marginBottom: 10
     },
 
@@ -182,7 +182,7 @@ function createStyleSheet(theme) {
     //NOTES EDITOR
 
     editorContainer: {
-      flexGrow: 1,
+      flex: 1,
       backgroundColor: mainColor
     },
 
@@ -197,7 +197,7 @@ function createStyleSheet(theme) {
     },
 
     bodyInputBox: {
-      flexGrow: 1,
+      flex: 1,
       backgroundColor: buttonColor,
       color: buttonTextColor,
       fontFamily: lightFont,
@@ -208,7 +208,8 @@ function createStyleSheet(theme) {
 
     buttonRow: {
       flexDirection: "row",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      paddingBottom: 20
     },
 
     saveBtnContainer: {

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, Modal, TouchableOpacity} from "react-native";
+import {View, Text, Modal, TouchableOpacity, KeyboardAvoidingView} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import {Ionicons} from "@expo/vector-icons";
 import * as firebase from "firebase";
@@ -123,7 +123,7 @@ function Dashboard({navigation}) {
   />;
 
   return (
-    <View style={styles.dashContainer}>
+    <KeyboardAvoidingView style={styles.dashContainer} behavior="height">
       <View style={styles.dashTopRowContainer}>
         <Text style={styles.dashHeader}>{name}'s Notes</Text>
         <TouchableOpacity
@@ -216,7 +216,7 @@ function Dashboard({navigation}) {
         noteEditor :
         null
       }
-    </View>
+    </KeyboardAvoidingView>
   );
 
 }

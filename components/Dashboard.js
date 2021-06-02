@@ -6,7 +6,7 @@ import {logOut, saveNotes} from "../api/firebase-methods";
 import Settings from "./Settings";
 import NotesList from "./NotesList";
 import NoteEditor from "./NoteEditor";
-import {createStyleSheet} from "../styles.js";
+import {createStyleSheet} from "../styles/main-styles.js";
 
 function Dashboard({navigation}) {
   const currentUserUID = firebase.auth().currentUser.uid;

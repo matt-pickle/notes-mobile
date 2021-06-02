@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {ActivityIndicator, View} from "react-native";
 import * as firebase from "firebase";
+import styles from "../styles/login-styles";
 
 function Loading({navigation}) {
   useEffect(() => {
@@ -14,7 +15,7 @@ function Loading({navigation}) {
   });
 
   return (
-    <View>
+    <View style={styles.loadingScreen}>
       <ActivityIndicator size="large" />
     </View>
   )

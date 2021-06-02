@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, Modal, TouchableOpacity, KeyboardAvoidingView} from "react-native";
-import {Picker} from "@react-native-picker/picker";
+import {View, Text, TouchableOpacity, KeyboardAvoidingView} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
+import Settings from "./Settings";
 import NotesList from "./NotesList";
 import NoteEditor from "./NoteEditor";
 import {createStyleSheet} from "../styles.js";
@@ -135,80 +135,16 @@ function Dashboard({navigation}) {
           />
         </TouchableOpacity>
       </View>
-      <Modal
-        animationType="slide"
-        visible={isSettingsVisible}
-        transparent={true}
-        onRequestClose={() => setIsSettingsVisible(false)}
-      >
-        <View style={styles.settingsModal}>
-          <View style={styles.modalTopRowContainer}>
-          <Text style={styles.modalHeader}>Settings</Text>
-            <TouchableOpacity
-              onPress={() => setIsSettingsVisible(false)}
-            >
-              <Text style={styles.modalHeader}>X</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.themeSwitchContainer}>
-            <Text style={styles.modalText}>Theme: </Text>
-            <Picker
-              style={styles.themePicker}
-              mode="dropdown"
-              selectedValue={theme}
-              onValueChange={value => handleChangeTheme(value)}
-            >
-              <Picker.Item
-                label="Light"
-                value="light"
-              />
-              <Picker.Item
-                label="Dark"
-                value="dark"
-              />
-            </Picker>
-          </View>
-          <View style={styles.sortBySwitchContainer}>
-            <Text style={styles.modalText}>Sort By: </Text>
-            <Picker
-              style={styles.sortByPicker}
-              mode="dropdown"
-              selectedValue={sortBy}
-              onValueChange={value => handleChangeSortBy(value)}
-            >
-              <Picker.Item
-                label="Last modified (descending)"
-                value="modified-desc"
-              />
-              <Picker.Item
-                label="Last modified (ascending)"
-                value="modified-asc"
-              />
-              <Picker.Item
-                label="Date created (descending)"
-                value="created-desc"
-              />
-              <Picker.Item
-                label="Date created (ascending)"
-                value="created-asc"
-              />
-              <Picker.Item
-                label="Alphabetical"
-                value="alph"
-              />
-              <Picker.Item
-                label="Reverse alphabetical"
-                value="alph-reverse"
-              />
-            </Picker>
-          </View>
-          <TouchableOpacity
-            onPress={handleLogOut}
-          >
-            <Text style={styles.modalText}>Log Out</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      <Settings
+        styles={styles}
+        isSettingsVisible={isSettingsVisible}
+        setIsSettingsVisible={setIsSettingsVisible}
+        theme={theme}
+        handleChangeTheme={handleChangeTheme}
+        sortBy={sortBy}
+        handleChangeSortBy={handleChangeSortBy}
+        handleLogOut={handleLogOut}
+      />
       {
         notes && !isEditorOpen ?
         notesList : 

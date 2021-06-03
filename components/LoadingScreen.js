@@ -9,7 +9,7 @@ function Loading({navigation}) {
       if (user && user.emailVerified) {
         navigation.replace("Dashboard");
       } else {
-        navigation.replace("Welcome");
+        navigation.replace("LoginScreen");
       }
     });
   });

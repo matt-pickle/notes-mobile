@@ -1,28 +1,37 @@
 import React, {useState} from "react";
 import {View, Text, TextInput, Alert} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
-import {logIn} from "../api/firebase-methods";
+import {registration} from "../api/firebase-methods";
 
-function SignIn({navigation}) {
+function SignUp({navigation}) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit() {
-    if (!email) {
+  async function handleSubmit() {
+    if (!name) {
+      Alert.alert("Name is required");
+    } else if (!email) {
       Alert.alert("Email is required");
     } else if (!password) {
       Alert.alert("Password is required");
     } else {
-      logIn(email, password);
+      await registration(name, email, password);
+      setName("");
       setEmail("");
       setPassword("");
-      navigation.navigate("Loading");
+      navigation.navigate("LoadingScreen");
     }
   }
 
   return (
     <View>
-      <Text>Sign in to your account:</Text>
+      <Text>Sign Up Screen</Text>
+      <TextInput
+        placeholder="Name"
+        value={name}
+        onChangeText={name => setName(name)}
+      />
       <TextInput
         placeholder="Email"
         value={email}
@@ -35,15 +44,15 @@ function SignIn({navigation}) {
         secureTextEntry={true}
       />
       <TouchableOpacity onPress={handleSubmit}>
-        <Text>Sign In</Text>
+        <Text>Sign Up</Text>
       </TouchableOpacity>
 
-      <Text>Don't have an account?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-        <Text>Sign Up</Text>
+      <Text>Already have an account?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
+        <Text>Log In</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-export default SignIn;
+export default SignUp;

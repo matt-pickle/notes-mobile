@@ -1,58 +1,56 @@
 import React, {useState} from "react";
 import {View, Text, TextInput, Alert} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
-import {registration} from "../api/firebase-methods";
+import {logIn} from "../api/firebase-methods";
+import styles from "../styles/login-styles";
 
-function SignUp({navigation}) {
-  const [name, setName] = useState("");
+function SignIn({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSubmit() {
-    if (!name) {
-      Alert.alert("Name is required");
-    } else if (!email) {
+  function handleSubmit() {
+    if (!email) {
       Alert.alert("Email is required");
     } else if (!password) {
       Alert.alert("Password is required");
     } else {
-      await registration(name, email, password);
-      setName("");
+      logIn(email, password);
       setEmail("");
       setPassword("");
-      navigation.navigate("Loading");
+      navigation.navigate("LoadingScreen");
     }
   }
 
   return (
-    <View>
-      <Text>Sign Up Screen</Text>
+    <View style={styles.loginScreen}>
+      <Text style={styles.lightText}>Log in to your account:</Text>
       <TextInput
-        placeholder="Name"
-        value={name}
-        onChangeText={name => setName(name)}
-      />
-      <TextInput
+        style={styles.inputBox}
+        placeholderTextColor="rgb(120,120,130)"
         placeholder="Email"
+        maxLength={50}
         value={email}
         onChangeText={email => setEmail(email)}
       />
       <TextInput
+        style={styles.inputBox}
+        placeholderTextColor="rgb(120,120,130)"
         placeholder="Password"
+        maxLength={20}
         value={password}
         onChangeText={password => setPassword(password)}
         secureTextEntry={true}
       />
       <TouchableOpacity onPress={handleSubmit}>
-        <Text>Sign Up</Text>
+        <Text style={styles.boldText}>LOG IN</Text>
       </TouchableOpacity>
 
-      <Text>Already have an account?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
-        <Text>Sign In</Text>
+      <Text style={styles.lightText}>Don't have an account?</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
+        <Text style={styles.boldText}>SIGN UP</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-export default SignUp;
+export default SignIn;

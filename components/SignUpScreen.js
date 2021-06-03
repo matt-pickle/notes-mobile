@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {View, Text, TextInput, Alert} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import {registration} from "../api/firebase-methods";
+import styles from "../styles/login-styles";
 
 function SignUp({navigation}) {
   const [name, setName] = useState("");
@@ -25,31 +26,40 @@ function SignUp({navigation}) {
   }
 
   return (
-    <View>
-      <Text>Sign Up Screen</Text>
+    <View style={styles.loginScreen}>
+      <Text style={styles.lightText}>Create a new account:</Text>
       <TextInput
+        style={styles.inputBox}
+        placeholderTextColor="rgb(120,120,130)"
         placeholder="Name"
+        maxLength={20}
         value={name}
         onChangeText={name => setName(name)}
       />
       <TextInput
+        style={styles.inputBox}
+        placeholderTextColor="rgb(120,120,130)"
         placeholder="Email"
+        maxLength={50}
         value={email}
         onChangeText={email => setEmail(email)}
       />
       <TextInput
+        style={styles.inputBox}
+        placeholderTextColor="rgb(120,120,130)"
         placeholder="Password"
+        maxLength={20}
         value={password}
         onChangeText={password => setPassword(password)}
         secureTextEntry={true}
       />
       <TouchableOpacity onPress={handleSubmit}>
-        <Text>Sign Up</Text>
+        <Text style={styles.boldText}>SIGN UP</Text>
       </TouchableOpacity>
 
-      <Text>Already have an account?</Text>
+      <Text style={styles.lightText}>Already have an account?</Text>
       <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
-        <Text>Log In</Text>
+        <Text style={styles.boldText}>LOG IN</Text>
       </TouchableOpacity>
     </View>
   );

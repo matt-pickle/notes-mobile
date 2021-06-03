@@ -24,7 +24,7 @@ function Dashboard({navigation}) {
     async function getUserInfo() {
       let doc = await userRef.get();
       if (!doc.exists) {
-        navigation.navigate("Welcome");
+        navigation.navigate("LoginScreen");
       } else {
         let dataObj = doc.data();
         setName(dataObj.name);

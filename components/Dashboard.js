@@ -4,6 +4,7 @@ import {Ionicons} from "@expo/vector-icons";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
 import SettingsModal from "./SettingsModal";
+import DeleteModal from "./DeleteModal";
 import NotesList from "./NotesList";
 import NoteEditor from "./NoteEditor";
 import {createStyleSheet} from "../styles/main-styles.js";
@@ -18,6 +19,8 @@ function Dashboard({navigation}) {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [displayedNote, setDisplayedNote] = useState(null);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const [noteToDelete, setNoteToDelete] = useState({});
   const styles = createStyleSheet(theme);
 
   useEffect(() => {
@@ -92,6 +95,11 @@ function Dashboard({navigation}) {
     setDisplayedNote(null);
   }
 
+  function handleOpenDeleteModal(note) {
+    setNoteToDelete(note);
+    setIsDeleteModalVisible(true);
+  }
+
   function handleDeleteNote(id) {
     let updatedNotesArr = notes.filter(item => {
       return item.id !== id;
@@ -100,6 +108,7 @@ function Dashboard({navigation}) {
     saveNotes(userRef, updatedNotesArr);
     setIsEditorOpen(false);
     setDisplayedNote(null);
+    setIsDeleteModalVisible(false);
   }
 
   function handleLogOut() {
@@ -112,7 +121,7 @@ function Dashboard({navigation}) {
     sortBy={sortBy}
     styles={styles}
     handleOpenEditor={handleOpenEditor}
-    handleDeleteNote={handleDeleteNote}
+    handleOpenDeleteModal={handleOpenDeleteModal}
   />;
 
   const noteEditor = <NoteEditor
@@ -144,6 +153,14 @@ function Dashboard({navigation}) {
         sortBy={sortBy}
         handleChangeSortBy={handleChangeSortBy}
         handleLogOut={handleLogOut}
+      />
+      <DeleteModal
+        styles={styles}
+        isDeleteModalVisible={isDeleteModalVisible}
+        setIsDeleteModalVisible={setIsDeleteModalVisible}
+        id={noteToDelete.id}
+        title={noteToDelete.title}
+        handleDeleteNote={handleDeleteNote}
       />
       {
         notes && !isEditorOpen ?

@@ -155,9 +155,10 @@ function createStyleSheet(theme) {
 
     //LIST ITEM
 
-    listItem: {
+    listItemContainer: {
+      flex: 1,
       flexDirection: "row",
-      justifyContent: "space-between",
+      // justifyContent: "space-between",
       alignItems: "center",
       backgroundColor: buttonColor,
       height: 35,
@@ -167,11 +168,22 @@ function createStyleSheet(theme) {
       elevation: 5
     },
 
+    listItemTitleButton: {
+      flexGrow: 1,
+      justifyContent: "center",
+      height: "100%"
+    },
+
     listItemText: {
       color: buttonTextColor,
       fontFamily: lightFont,
       fontSize: 18
     },  
+
+    listItemDeleteButton: {
+      justifyContent: "center",
+      height: "100%"
+    },
 
     listItemIcon: {
       color: buttonTextColor,

@@ -1,25 +1,27 @@
 import React from "react";
-import {Text} from "react-native";
-import {TouchableOpacity} from "react-native-gesture-handler";
+import {View, Text, TouchableOpacity} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
 function NotesListItem(props) {
   const styles = props.styles;
   return (
-    <TouchableOpacity 
-      style={styles.listItem}
-      onPress={() => props.handleOpenEditor(props.id)}
-    >
-      <Text style={styles.listItemText}>{props.title}</Text>
+    <View style={styles.listItemContainer}>
+      <TouchableOpacity 
+        style={styles.listItemTitleButton}
+        onPress={() => props.handleOpenEditor(props.note.id)}
+      >
+        <Text style={styles.listItemText}>{props.note.title}</Text>
+      </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => props.handleDeleteNote(props.id)}
+        style={styles.listItemDeleteButton}
+        onPress={() => props.handleOpenDeleteModal(props.note)}
       >
         <Ionicons
           name="trash-outline"
           style={styles.listItemIcon}
         />
       </TouchableOpacity>
-    </TouchableOpacity>
+    </View>
   );
 }
 

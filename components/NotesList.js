@@ -44,12 +44,10 @@ function NotesList(props) {
     return (
       <NotesListItem
         key={item.id}
-        id={item.id}
-        title={item.title}
-        lastUpdated={item.lastUpdated}
+        note={item}
         styles={styles}
         handleOpenEditor={props.handleOpenEditor}
-        handleDeleteNote={props.handleDeleteNote}
+        handleOpenDeleteModal={props.handleOpenDeleteModal}
       />
     );
   });  

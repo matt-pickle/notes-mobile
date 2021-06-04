@@ -128,7 +128,7 @@ function Dashboard({navigation}) {
     displayedNote={displayedNote}
     styles={styles}
     handleSaveAndClose={handleSaveAndClose}
-    handleDeleteNote={handleDeleteNote}
+    handleOpenDeleteModal={handleOpenDeleteModal}
   />;
 
   return (

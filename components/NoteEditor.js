@@ -48,7 +48,7 @@ function NoteEditor(props) {
           <Text style={styles.dashText}>Save & Close</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => props.handleDeleteNote(props.displayedNote.id)}
+          onPress={() => props.handleOpenDeleteModal(props.displayedNote)}
         >
           <Ionicons
             name="trash-outline"

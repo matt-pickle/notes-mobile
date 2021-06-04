@@ -39,6 +39,34 @@ function createStyleSheet(theme) {
       fontFamily: lightFont
     },
 
+    //DASHBOARD
+
+    dashContainer: {
+      flexDirection: "column",
+      backgroundColor: mainColor,
+      width: "100%",
+      height: windowHeight,
+      padding: 15
+    },
+
+    dashTopRowContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginBottom: 15
+    },
+
+    dashHeader: {
+      color: dashTextColor,
+      fontFamily: boldFont,
+      fontSize: 24
+    },
+    
+    dashText: {
+      color: dashTextColor,
+      fontFamily: lightFont,
+      fontSize: 18
+    },
+
     //SETTINGS MODAL
 
     settingsModal: {
@@ -95,32 +123,31 @@ function createStyleSheet(theme) {
       height: 25
     },
 
-    //DASHBOARD
+    //DELETE MODAL
 
-    dashContainer: {
+    deleteModal: {
+      alignSelf: "center",
       flexDirection: "column",
-      backgroundColor: mainColor,
-      width: "100%",
-      height: windowHeight,
-      padding: 15
+      backgroundColor: buttonColor,
+      width: "80%",
+      paddingTop: 10,
+      paddingHorizontal: 15,
+      paddingBottom: 15,
+      marginTop: 50,
+      elevation: 10
     },
 
-    dashTopRowContainer: {
-      flexDirection: "row",
-      justifyContent: "space-between",
+    deleteModalText: {
+      textAlign: "center",
+      color: buttonTextColor,
+      fontSize: 18,
+      fontFamily: lightFont,
       marginBottom: 15
     },
 
-    dashHeader: {
-      color: dashTextColor,
-      fontFamily: boldFont,
-      fontSize: 24
-    },
-    
-    dashText: {
-      color: dashTextColor,
-      fontFamily: lightFont,
-      fontSize: 18
+    modalButtonRow: {
+      flexDirection: "row",
+      justifyContent: "space-evenly"
     },
     
     //NOTES LIST
@@ -156,9 +183,7 @@ function createStyleSheet(theme) {
     //LIST ITEM
 
     listItemContainer: {
-      flex: 1,
       flexDirection: "row",
-      // justifyContent: "space-between",
       alignItems: "center",
       backgroundColor: buttonColor,
       height: 35,

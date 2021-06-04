@@ -13,8 +13,8 @@ function DeleteModal(props) {
       transparent={true}
       onRequestClose={() => props.setIsDeleteModalVisible(false)}
     >
-      <View style={styles.settingsModal}>
-        <Text style={styles.modalText}>Do you want to delete "{props.title}"?</Text>
+      <View style={styles.deleteModal}>
+        <Text style={styles.deleteModalText}>Do you want to delete {"\n"}"{props.title}"?</Text>
         <View style={styles.modalButtonRow}>
           <TouchableOpacity
             onPress={() => props.handleDeleteNote(props.id)}

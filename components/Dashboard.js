@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, KeyboardAvoidingView} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
-import Settings from "./Settings";
+import SettingsModal from "./SettingsModal";
 import NotesList from "./NotesList";
 import NoteEditor from "./NoteEditor";
 import {createStyleSheet} from "../styles/main-styles.js";
@@ -135,7 +135,7 @@ function Dashboard({navigation}) {
           />
         </TouchableOpacity>
       </View>
-      <Settings
+      <SettingsModal
         styles={styles}
         isSettingsVisible={isSettingsVisible}
         setIsSettingsVisible={setIsSettingsVisible}

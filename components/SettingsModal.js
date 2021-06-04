@@ -3,7 +3,7 @@ import {Modal, Text, View, TouchableOpacity} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import {Ionicons} from "@expo/vector-icons";
 
-function Settings(props) {
+function SettingsModal(props) {
   const styles = props.styles;
 
   return (
@@ -87,6 +87,6 @@ function Settings(props) {
   );
 }
 
-export default Settings;
+export default SettingsModal;
   
   

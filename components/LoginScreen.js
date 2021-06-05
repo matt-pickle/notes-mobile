@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Text, TextInput, Alert} from "react-native";
+import {View, Text, TextInput, Alert, Image} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import {logIn} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
@@ -23,6 +23,10 @@ function SignIn({navigation}) {
 
   return (
     <View style={styles.loginScreen}>
+      <Image
+        style={styles.logo}
+        source={require("../assets/logo.png")}
+      />
       <Text style={styles.lightText}>Log in to your account:</Text>
       <TextInput
         style={styles.inputBox}

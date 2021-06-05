@@ -8,7 +8,6 @@ let boldFont = "Ubuntu_700Bold";
 const styles = StyleSheet.create({
 
 loadingScreen: {
-  flex: 1,
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: mainColor,
@@ -19,11 +18,19 @@ loadingScreen: {
 //LOGIN SCREEN
 
 loginScreen: {
-  justifyContent: "center",
+  flexDirection: "column",
   alignItems: "center",
   backgroundColor: mainColor,
   width: "100%",
   height: "100%"
+},
+
+logo: {
+  resizeMode: "contain",
+  width: 150,
+  height: 75,
+  marginTop: 15,
+  marginBottom: 30
 },
 
 lightText: {

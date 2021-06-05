@@ -113,7 +113,7 @@ function Dashboard({navigation}) {
 
   function handleLogOut() {
     logOut();
-    navigation.replace("Welcome");
+    navigation.replace("LoginScreen");
   }
   
   const notesList = <NotesList 

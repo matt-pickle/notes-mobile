@@ -1,7 +1,8 @@
-import React from "react";
-import {Modal, Text, View, TouchableOpacity} from "react-native";
+import React, {useState} from "react";
+import {Modal, Text, View, TextInput, TouchableOpacity} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import {Ionicons} from "@expo/vector-icons";
+import { NavigationHelpersContext } from "@react-navigation/core";
 
 function SettingsModal(props) {
   const styles = props.styles;
@@ -25,6 +26,7 @@ function SettingsModal(props) {
             />
           </TouchableOpacity>
         </View>
+
         <View style={styles.themeSwitchContainer}>
           <Text style={styles.modalText}>Theme: </Text>
           <Picker
@@ -43,6 +45,7 @@ function SettingsModal(props) {
             />
           </Picker>
         </View>
+
         <View style={styles.sortBySwitchContainer}>
           <Text style={styles.modalText}>Sort By: </Text>
           <Picker
@@ -77,10 +80,17 @@ function SettingsModal(props) {
             />
           </Picker>
         </View>
-        <TouchableOpacity
-          onPress={props.handleLogOut}
-        >
-          <Text style={styles.logOutButton}>LOG OUT</Text>
+
+        <TouchableOpacity onPress={props.handleChangeEmail}>
+          <Text style={styles.settingsButton}>CHANGE EMAIL</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={props.handleChangePassword}>
+          <Text style={styles.settingsButton}>CHANGE PASSWORD</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={props.handleLogOut}>
+          <Text style={styles.settingsButton}>LOG OUT</Text>
         </TouchableOpacity>
       </View>
     </Modal>

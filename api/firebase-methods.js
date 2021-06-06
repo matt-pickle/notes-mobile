@@ -64,3 +64,28 @@ export async function resetPassword(email) {
     Alert.alert("Error!", err.message);
   }
 }
+
+export async function changeEmail(oldEmail, password, newEmail) {
+  const lowerCaseOldEmail = oldEmail.toLowerCase();
+  const lowerCaseNewEmail = newEmail.toLowerCase();
+  try {
+    await firebase.auth().signInWithEmailAndPassword(lowerCaseOldEmail, password)
+    .then(() => {
+      const user = firebase.auth().currentUser;
+      user.updateEmail(lowerCaseNewEmail)
+      .then(() => {
+        user.sendEmailVerification();
+        firebase.firestore().collection("users").doc(user.uid).update({
+          email: user.email,
+        });
+        Alert.alert(
+          "Success!",
+          "Your email address has been changed to " + user.email +
+          ". Please verify this address by clicking on the link in the automated verification message sent to your email."
+        );
+      });
+    });
+  } catch(err) {
+    Alert.alert("Error!", err.message);
+  }
+}

@@ -123,10 +123,11 @@ function createStyleSheet(theme) {
       height: 25
     },
 
-    logOutButton: {
+    settingsButton: {
       color: buttonTextColor,
       fontSize: 18,
-      fontFamily: boldFont
+      fontFamily: boldFont,
+      marginBottom: 20
     },
 
     //DELETE MODAL

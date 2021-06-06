@@ -64,6 +64,10 @@ function Dashboard({navigation}) {
     });
   }
 
+  function handleChangeEmail() {
+    navigation.navigate("ChangeEmailScreen");
+  }
+
   function handleOpenEditor(id) {
     const noteToDisplay = notes.find(item => {
       return item.id === id;
@@ -156,6 +160,7 @@ function Dashboard({navigation}) {
         handleChangeTheme={handleChangeTheme}
         sortBy={sortBy}
         handleChangeSortBy={handleChangeSortBy}
+        handleChangeEmail={handleChangeEmail}
         handleLogOut={handleLogOut}
       />
       <DeleteModal

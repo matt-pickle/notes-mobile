@@ -1,27 +1,27 @@
 import React, {useState} from "react";
 import {View, Text, TextInput, Alert, Image} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
-import {registration} from "../api/firebase-methods";
+import {logIn, changeEmail} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
-function SignUp({navigation}) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+function ChangeEmailScreen({navigation}) {
+  const [oldEmail, setOldEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newEmail, setNewEmail] = useState("");
 
   async function handleSubmit() {
-    if (!name) {
-      Alert.alert("Name is required.");
-    } else if (!email) {
-      Alert.alert("Email is required");
+    if (!oldEmail) {
+      Alert.alert("Old Email is required");
     } else if (!password) {
       Alert.alert("Password is required");
+    } else if (!newEmail) {
+      Alert.alert("New Email is required");
     } else {
-      await registration(name, email, password);
-      setName("");
-      setEmail("");
+      await changeEmail(oldEmail, password, newEmail);
+      setOldEmail("");
       setPassword("");
-      navigation.navigate("LoadingScreen");
+      setNewEmail("");
+      navigation.navigate("LoginScreen");
     }
   }
 
@@ -31,22 +31,13 @@ function SignUp({navigation}) {
         style={styles.logo}
         source={require("../assets/logo.png")}
       />
-      <Text style={styles.lightText}>Create a new account:</Text>
       <TextInput
         style={styles.inputBox}
         placeholderTextColor="rgb(120,120,130)"
-        placeholder="Name"
-        maxLength={20}
-        value={name}
-        onChangeText={name => setName(name)}
-      />
-      <TextInput
-        style={styles.inputBox}
-        placeholderTextColor="rgb(120,120,130)"
-        placeholder="Email"
+        placeholder="Old Email"
         maxLength={50}
-        value={email}
-        onChangeText={email => setEmail(email)}
+        value={oldEmail}
+        onChangeText={text => setOldEmail(text)}
       />
       <TextInput
         style={styles.inputBox}
@@ -57,16 +48,22 @@ function SignUp({navigation}) {
         onChangeText={password => setPassword(password)}
         secureTextEntry={true}
       />
+      <TextInput
+        style={styles.inputBox}
+        placeholderTextColor="rgb(120,120,130)"
+        placeholder="New Email"
+        maxLength={50}
+        value={newEmail}
+        onChangeText={text => setNewEmail(text)}
+      />
       <TouchableOpacity onPress={handleSubmit}>
-        <Text style={styles.boldText}>SIGN UP</Text>
+        <Text style={styles.loginButton}>SUBMIT</Text>
       </TouchableOpacity>
-
-      <Text style={styles.lightText}>Already have an account?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
-        <Text style={styles.boldText}>LOG IN</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("ResetScreen")}>
+        <Text style={styles.smallLink}>Forgot password?</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-export default SignUp;
+export default ChangeEmailScreen;

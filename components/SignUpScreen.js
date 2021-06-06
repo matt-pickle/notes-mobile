@@ -11,13 +11,18 @@ function SignUp({navigation}) {
 
   async function handleSubmit() {
     if (!name) {
-      Alert.alert("Name is required");
+      Alert.alert("Name is required.");
     } else if (!email) {
       Alert.alert("Email is required");
     } else if (!password) {
       Alert.alert("Password is required");
     } else {
       await registration(name, email, password);
+      Alert.alert(
+        "Success!",
+        "An automated message with a verification link has been sent to your email. " +
+        "Please use it to enable your Simple Notes account by verifying your email address."
+      );
       setName("");
       setEmail("");
       setPassword("");

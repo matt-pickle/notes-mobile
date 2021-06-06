@@ -80,7 +80,7 @@ function SettingsModal(props) {
         <TouchableOpacity
           onPress={props.handleLogOut}
         >
-          <Text style={styles.modalText}>Log Out</Text>
+          <Text style={styles.logOutButton}>LOG OUT</Text>
         </TouchableOpacity>
       </View>
     </Modal>

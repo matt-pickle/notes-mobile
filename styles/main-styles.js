@@ -123,6 +123,12 @@ function createStyleSheet(theme) {
       height: 25
     },
 
+    logOutButton: {
+      color: buttonTextColor,
+      fontSize: 18,
+      fontFamily: boldFont
+    },
+
     //DELETE MODAL
 
     deleteModal: {
@@ -250,7 +256,14 @@ function createStyleSheet(theme) {
     },
 
     saveBtnContainer: {
-      flexDirection: "row"
+      flexDirection: "row",
+      alignItems: "center"
+    },
+
+    saveButton: {
+      color: dashTextColor,
+      fontFamily: boldFont,
+      fontSize: 18
     }
   });
 }

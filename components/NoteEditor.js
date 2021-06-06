@@ -45,7 +45,7 @@ function NoteEditor(props) {
             name="arrow-back"
             style={styles.dashHeader}
           />
-          <Text style={styles.dashText}>Save & Close</Text>
+          <Text style={styles.saveButton}>SAVE & CLOSE</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => props.handleOpenDeleteModal(props.displayedNote)}

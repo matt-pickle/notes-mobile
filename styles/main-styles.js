@@ -1,20 +1,20 @@
 import {StyleSheet, Dimensions, StatusBar} from 'react-native';
 
 function createStyleSheet(theme) {
-  let mainColor = "rgb(10,20,40)";
+  let mainColor = "rgb(0,30,80)";
   let buttonColor = "rgb(200,200,210)";
   let dashTextColor = "rgb(200,200,210)";
-  let buttonTextColor = "rgb(10,20,40)";
+  let buttonTextColor = "rgb(0,30,80)";
   let lightFont = "Ubuntu_400Regular";
   let boldFont = "Ubuntu_700Bold";
   const windowHeight = Dimensions.get("window").height - StatusBar.currentHeight;
 
   switch (theme) {
     case "dark":
-      mainColor = "rgb(10,20,40)";
+      mainColor = "rgb(0,30,80)";
       buttonColor = "rgb(200,200,210)";
       dashTextColor = "rgb(200,200,210)";
-      buttonTextColor = "rgb(10,20,40)";
+      buttonTextColor = "rgb(0,30,80)";
       break;
     case "light":
       mainColor = "rgb(200,200,200)";

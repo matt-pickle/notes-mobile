@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-const mainColor = "rgb(10,20,40)";
+const mainColor = "rgb(0,30,80)";
 const accentColor = "rgb(200,200,210)";
 let lightFont = "Ubuntu_400Regular";
 let boldFont = "Ubuntu_700Bold";

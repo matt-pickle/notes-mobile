@@ -58,7 +58,7 @@ export async function resetPassword(email) {
     await firebase.auth().sendPasswordResetEmail(email);
     Alert.alert(
       "Password Reset",
-      "An automated message with a temporary password has been sent to your email."
+      "An automated message with a password reset link has been sent to your email."
     );
   } catch(err) {
     Alert.alert("Error!", err.message);

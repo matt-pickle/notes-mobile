@@ -3,8 +3,9 @@ import "firebase/firestore";
 import {Alert} from "react-native";
 
 export function registration(name, email, password) {
+  const lowerCaseEmail = email.toLowerCase();
   try {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    firebase.auth().createUserWithEmailAndPassword(lowerCaseEmail, password)
     .then(userCredential => {
       if (userCredential) {
         const user = userCredential.user;
@@ -23,8 +24,9 @@ export function registration(name, email, password) {
 }
 
 export async function logIn(email, password) {
+  const lowerCaseEmail = email.toLowerCase();
   try {
-    await firebase.auth().signInWithEmailAndPassword(email, password);
+    await firebase.auth().signInWithEmailAndPassword(lowerCaseEmail, password);
   } catch(err) {
     Alert.alert("Error!", err.message);
   }

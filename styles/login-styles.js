@@ -47,6 +47,31 @@ boldText: {
   marginBottom: 30
 },
 
+loginButton: {
+  color: accentColor,
+  fontFamily: boldFont,
+  fontSize: 20,
+  marginBottom: 10
+},
+
+smallLink: {
+  color: accentColor,
+  fontFamily: lightFont,
+  textDecorationLine: "underline",
+  fontSize: 12,
+  marginBottom: 30
+},
+
+backButton: {
+  flexDirection: "row"
+},
+
+backArrow: {
+  color: accentColor,
+  fontFamily: boldFont,
+  fontSize: 24,
+},
+
 inputBox: {
   textAlign: "center",
   width: 300,

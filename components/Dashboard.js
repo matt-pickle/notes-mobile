@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, TouchableOpacity, KeyboardAvoidingView} from "react-native";
+import {View, Text, TouchableOpacity, KeyboardAvoidingView, Alert} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
@@ -25,15 +25,19 @@ function Dashboard({navigation}) {
 
   useEffect(() => {
     async function getUserInfo() {
-      let doc = await userRef.get();
-      if (!doc.exists) {
-        navigation.navigate("LoginScreen");
-      } else {
-        let dataObj = doc.data();
-        setName(dataObj.name);
-        setTheme(dataObj.theme);
-        setSortBy(dataObj.sortBy);
-        setNotes(dataObj.notes);
+      try {
+        let doc = await userRef.get();
+        if (!doc.exists) {
+          navigation.navigate("LoginScreen");
+        } else {
+          let dataObj = doc.data();
+          setName(dataObj.name);
+          setTheme(dataObj.theme);
+          setSortBy(dataObj.sortBy);
+          setNotes(dataObj.notes);
+        }
+      } catch(err) {
+        Alert.alert("Error!", err.message);
       }
     }
     getUserInfo();

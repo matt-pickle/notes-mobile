@@ -2,10 +2,10 @@ import * as firebase from "firebase";
 import "firebase/firestore";
 import {Alert} from "react-native";
 
-export function registration(name, email, password) {
+export async function registration(name, email, password) {
   const lowerCaseEmail = email.toLowerCase();
   try {
-    firebase.auth().createUserWithEmailAndPassword(lowerCaseEmail, password)
+    await firebase.auth().createUserWithEmailAndPassword(lowerCaseEmail, password)
     .then(userCredential => {
       if (userCredential) {
         const user = userCredential.user;
@@ -13,9 +13,14 @@ export function registration(name, email, password) {
         firebase.firestore().collection("users").doc(user.uid).set({
           email: user.email,
           name: name,
-          theme: "light",
+          theme: "dark",
           notes: []
         });
+        Alert.alert(
+          "Success!",
+          "An automated message with a verification link has been sent to your email. " +
+          "Please use it to enable your Simple Notes account by verifying your email address."
+        );
       }
     });
   } catch(err) {
@@ -43,6 +48,18 @@ export async function logOut() {
 export async function saveNotes(userRef, updatedNotesArr) {
   try {
     await userRef.update({notes: updatedNotesArr});
+  } catch(err) {
+    Alert.alert("Error!", err.message);
+  }
+}
+
+export async function resetPassword(email) {
+  try {
+    await firebase.auth().sendPasswordResetEmail(email);
+    Alert.alert(
+      "Password Reset",
+      "An automated message with a temporary password has been sent to your email."
+    );
   } catch(err) {
     Alert.alert("Error!", err.message);
   }

@@ -9,7 +9,7 @@ function SignUp({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSubmit() {
+  function handleSubmit() {
     if (!name) {
       Alert.alert("Name is required.");
     } else if (!email) {
@@ -17,12 +17,7 @@ function SignUp({navigation}) {
     } else if (!password) {
       Alert.alert("Password is required");
     } else {
-      await registration(name, email, password);
-      Alert.alert(
-        "Success!",
-        "An automated message with a verification link has been sent to your email. " +
-        "Please use it to enable your Simple Notes account by verifying your email address."
-      );
+      registration(name, email, password);
       setName("");
       setEmail("");
       setPassword("");

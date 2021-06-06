@@ -8,6 +8,7 @@ import * as firebase from "firebase";
 import apiKeys from "./config/keys";
 import SignUpScreen from "./components/SignUpScreen";
 import LoginScreen from "./components/LoginScreen";
+import ResetScreen from "./components/ResetScreen";
 import LoadingScreen from "./components/LoadingScreen";
 import Dashboard from "./components/Dashboard";
 
@@ -36,6 +37,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name={'LoadingScreen'} component={LoadingScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name='ResetScreen' component={ResetScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='SignUpScreen' component={SignUpScreen} options={{ headerShown: false }}/>
           <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} />
         </Stack.Navigator>

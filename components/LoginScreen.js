@@ -46,9 +46,11 @@ function SignIn({navigation}) {
         secureTextEntry={true}
       />
       <TouchableOpacity onPress={handleSubmit}>
-        <Text style={styles.boldText}>LOG IN</Text>
+        <Text style={styles.loginButton}>LOG IN</Text>
       </TouchableOpacity>
-
+      <TouchableOpacity onPress={() => navigation.navigate("ResetScreen")}>
+        <Text style={styles.smallLink}>Forgot password?</Text>
+      </TouchableOpacity>
       <Text style={styles.lightText}>Don't have an account?</Text>
       <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
         <Text style={styles.boldText}>SIGN UP</Text>

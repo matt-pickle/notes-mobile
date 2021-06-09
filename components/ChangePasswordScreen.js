@@ -1,26 +1,26 @@
 import React, {useState} from "react";
 import {View, Text, TextInput, Alert, Image} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
-import {changeEmail} from "../api/firebase-methods";
+import {changePassword} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
-function ChangeEmailScreen({navigation}) {
-  const [oldEmail, setOldEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [newEmail, setNewEmail] = useState("");
+function ChangePasswordScreen({navigation}) {
+  const [email, setEmail] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   async function handleSubmit() {
-    if (!oldEmail) {
-      Alert.alert("Old Email is required");
-    } else if (!password) {
-      Alert.alert("Password is required");
-    } else if (!newEmail) {
-      Alert.alert("New Email is required");
+    if (!email) {
+      Alert.alert("Email is required");
+    } else if (!oldPassword) {
+      Alert.alert("Old Password is required");
+    } else if (!newPassword) {
+      Alert.alert("New Password is required");
     } else {
-      await changeEmail(oldEmail, password, newEmail);
-      setOldEmail("");
-      setPassword("");
-      setNewEmail("");
+      await changePassword(email, oldPassword, newPassword);
+      setEmail("");
+      setOldPassword("");
+      setNewPassword("");
       navigation.navigate("LoginScreen");
     }
   }
@@ -34,27 +34,28 @@ function ChangeEmailScreen({navigation}) {
       <TextInput
         style={styles.inputBox}
         placeholderTextColor="rgb(120,120,130)"
-        placeholder="Old Email"
+        placeholder="Email"
         maxLength={50}
-        value={oldEmail}
-        onChangeText={text => setOldEmail(text)}
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
       <TextInput
         style={styles.inputBox}
         placeholderTextColor="rgb(120,120,130)"
-        placeholder="Password"
+        placeholder="Old Password"
         maxLength={20}
-        value={password}
-        onChangeText={password => setPassword(password)}
+        value={oldPassword}
+        onChangeText={text => setOldPassword(text)}
         secureTextEntry={true}
       />
       <TextInput
         style={styles.inputBox}
         placeholderTextColor="rgb(120,120,130)"
-        placeholder="New Email"
-        maxLength={50}
-        value={newEmail}
-        onChangeText={text => setNewEmail(text)}
+        placeholder="New Password"
+        maxLength={20}
+        value={newPassword}
+        onChangeText={text => setNewPassword(text)}
+        secureTextEntry={true}
       />
       <TouchableOpacity onPress={handleSubmit}>
         <Text style={styles.loginButton}>SUBMIT</Text>
@@ -66,4 +67,4 @@ function ChangeEmailScreen({navigation}) {
   );
 }
 
-export default ChangeEmailScreen;
+export default ChangePasswordScreen;

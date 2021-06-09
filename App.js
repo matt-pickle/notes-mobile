@@ -10,6 +10,7 @@ import SignUpScreen from "./components/SignUpScreen";
 import LoginScreen from "./components/LoginScreen";
 import ResetScreen from "./components/ResetScreen";
 import ChangeEmailScreen from "./components/ChangeEmailScreen";
+import ChangePasswordScreen from "./components/ChangePasswordScreen";
 import LoadingScreen from "./components/LoadingScreen";
 import Dashboard from "./components/Dashboard";
 
@@ -40,6 +41,7 @@ export default function App() {
           <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='ResetScreen' component={ResetScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='ChangeEmailScreen' component={ChangeEmailScreen} options={{ headerShown: false }}/>
+          <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='SignUpScreen' component={SignUpScreen} options={{ headerShown: false }}/>
           <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} />
         </Stack.Navigator>

@@ -89,3 +89,22 @@ export async function changeEmail(oldEmail, password, newEmail) {
     Alert.alert("Error!", err.message);
   }
 }
+
+export async function changePassword(email, oldPassword, newPassword) {
+  const lowerCaseEmail = email.toLowerCase();
+  try {
+    await firebase.auth().signInWithEmailAndPassword(lowerCaseEmail, oldPassword)
+    .then(() => {
+      const user = firebase.auth().currentUser;
+      user.updatePassword(newPassword)
+      .then(() => {
+        Alert.alert(
+          "Success!",
+          "Your password has been changed."
+        );
+      });
+    });
+  } catch(err) {
+    Alert.alert("Error!", err.message);
+  }
+}

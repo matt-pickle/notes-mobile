@@ -11,7 +11,6 @@ import LoginScreen from "./components/LoginScreen";
 import ResetScreen from "./components/ResetScreen";
 import ChangeEmailScreen from "./components/ChangeEmailScreen";
 import ChangePasswordScreen from "./components/ChangePasswordScreen";
-import LoadingScreen from "./components/LoadingScreen";
 import Dashboard from "./components/Dashboard";
 
 const Stack = createStackNavigator();
@@ -37,7 +36,6 @@ export default function App() {
       <NavigationContainer>
         <StatusBar></StatusBar>
         <Stack.Navigator>
-          <Stack.Screen name={'LoadingScreen'} component={LoadingScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='ResetScreen' component={ResetScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='ChangeEmailScreen' component={ChangeEmailScreen} options={{ headerShown: false }}/>

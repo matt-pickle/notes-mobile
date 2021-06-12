@@ -9,7 +9,7 @@ function ChangePasswordScreen({navigation}) {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
-  async function handleSubmit() {
+  function handleSubmit() {
     if (!email) {
       Alert.alert("Email is required");
     } else if (!oldPassword) {
@@ -17,7 +17,7 @@ function ChangePasswordScreen({navigation}) {
     } else if (!newPassword) {
       Alert.alert("New Password is required");
     } else {
-      await changePassword(email, oldPassword, newPassword);
+      changePassword(email, oldPassword, newPassword);
       setEmail("");
       setOldPassword("");
       setNewPassword("");

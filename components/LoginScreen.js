@@ -1,12 +1,15 @@
 import React, {useState} from "react";
 import {View, Text, TextInput, Alert, Image} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
-import {logIn} from "../api/firebase-methods";
+import * as firebase from "firebase";
+import {logIn, logOut} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
 function SignIn({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  logOut();
 
   function handleSubmit() {
     if (!email) {
@@ -17,7 +20,18 @@ function SignIn({navigation}) {
       logIn(email, password);
       setEmail("");
       setPassword("");
-      navigation.navigate("LoadingScreen");
+      firebase.auth().onAuthStateChanged(user => {
+        if (user && user.emailVerified) {
+          navigation.replace("Dashboard");
+        } else if (user && !user.emailVerified) {
+          user.sendEmailVerification();
+          Alert.alert(
+            "Unverified Email Address",
+            "A new automated message with a verification link has been sent to your email. " +
+            "Please use it to enable your Simple Notes account by verifying your email address."
+          );
+        }
+      });
     }
   }
 

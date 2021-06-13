@@ -6,6 +6,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import * as firebase from "firebase";
 import apiKeys from "./config/keys";
+import LoadingScreen from "./components/LoadingScreen";
 import SignUpScreen from "./components/SignUpScreen";
 import LoginScreen from "./components/LoginScreen";
 import ResetScreen from "./components/ResetScreen";
@@ -36,6 +37,7 @@ export default function App() {
       <NavigationContainer>
         <StatusBar></StatusBar>
         <Stack.Navigator>
+          <Stack.Screen name='LoadingScreen' component={LoadingScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='ResetScreen' component={ResetScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='ChangeEmailScreen' component={ChangeEmailScreen} options={{ headerShown: false }}/>

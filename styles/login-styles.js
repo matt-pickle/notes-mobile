@@ -23,6 +23,10 @@ logo: {
   marginBottom: 30
 },
 
+activityIndicator: {
+  marginTop: 100
+},
+
 lightText: {
   color: accentColor,
   fontFamily: lightFont,

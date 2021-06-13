@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, KeyboardAvoidingView, Alert} from "react-n
 import {Ionicons} from "@expo/vector-icons";
 import * as firebase from "firebase";
 import {logOut, saveNotes} from "../api/firebase-methods";
+import {AdMobInterstitial} from "expo-ads-admob";
 import SettingsModal from "./SettingsModal";
 import DeleteModal from "./DeleteModal";
 import NotesList from "./NotesList";
@@ -40,7 +41,7 @@ function Dashboard({navigation}) {
         Alert.alert("Error!", err.message);
       }
     }
-    getUserInfo();
+    getUserInfo();  
   }, []);
 
   function handleChangeTheme() {
@@ -72,15 +73,17 @@ function Dashboard({navigation}) {
     navigation.navigate("ChangePasswordScreen");
   }
 
-  function handleOpenEditor(id) {
+  async function handleOpenEditor(id) {
     const noteToDisplay = notes.find(item => {
       return item.id === id;
     });
     setDisplayedNote(noteToDisplay);
     setIsEditorOpen(true);
+    await AdMobInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712"); //Test ID
+    await AdMobInterstitial.requestAdAsync({servePersonalizedAds: true});
   }
 
-  function handleSaveAndClose(title, body) {
+  async function handleSaveAndClose(title, body) {
     let updatedNotesArr = [];
     let id = null;
     const timestamp = Date.now();
@@ -103,6 +106,11 @@ function Dashboard({navigation}) {
     });
     setNotes(updatedNotesArr);
     saveNotes(userRef, updatedNotesArr);
+
+    if (await AdMobInterstitial.getIsReadyAsync()) {
+      await AdMobInterstitial.showAdAsync();
+    }
+    
     setIsEditorOpen(false);
     setDisplayedNote(null);
   }

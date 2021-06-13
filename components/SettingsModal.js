@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import {Modal, Text, View, TextInput, TouchableOpacity} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import {Ionicons} from "@expo/vector-icons";
-import { NavigationHelpersContext } from "@react-navigation/core";
 
 function SettingsModal(props) {
   const styles = props.styles;

@@ -5,7 +5,7 @@ import {resetPassword} from "../api/firebase-methods";
 import { Ionicons } from '@expo/vector-icons';
 import styles from "../styles/login-styles";
 
-function ResetScreen({navigation}) {
+function ResetScreen(props) {
   const [email, setEmail] = useState("");
 
   function handleSubmit() {
@@ -13,8 +13,7 @@ function ResetScreen({navigation}) {
       Alert.alert("Email is required");
     } else {
       resetPassword(email);
-      setEmail("");
-      navigation.navigate("LoadingScreen");
+      props.setScreen("LoginScreen");
     }
   }
 

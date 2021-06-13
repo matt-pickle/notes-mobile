@@ -4,7 +4,7 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 import {changeEmail} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
-function ChangeEmailScreen({navigation}) {
+function ChangeEmailScreen(props) {
   const [oldEmail, setOldEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
@@ -18,10 +18,7 @@ function ChangeEmailScreen({navigation}) {
       Alert.alert("New Email is required");
     } else {
       changeEmail(oldEmail, password, newEmail);
-      setOldEmail("");
-      setPassword("");
-      setNewEmail("");
-      navigation.navigate("LoginScreen");
+      props.setScreen("LoginScreen");
     }
   }
 
@@ -59,7 +56,7 @@ function ChangeEmailScreen({navigation}) {
       <TouchableOpacity onPress={handleSubmit}>
         <Text style={styles.loginButton}>SUBMIT</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("ResetScreen")}>
+      <TouchableOpacity onPress={() => props.setScreen("ResetScreen")}>
         <Text style={styles.smallLink}>Forgot password?</Text>
       </TouchableOpacity>
     </View>

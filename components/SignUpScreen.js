@@ -4,7 +4,7 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 import {registration} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
-function SignUpScreen({navigation}) {
+function SignUpScreen(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,10 +18,7 @@ function SignUpScreen({navigation}) {
       Alert.alert("Password is required");
     } else {
       registration(name, email, password);
-      setName("");
-      setEmail("");
-      setPassword("");
-      navigation.navigate("LoginScreen");
+      props.setScreen("LoginScreen");
     }
   }
 
@@ -62,7 +59,7 @@ function SignUpScreen({navigation}) {
       </TouchableOpacity>
 
       <Text style={styles.lightText}>Already have an account?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
+      <TouchableOpacity onPress={() => props.setScreen("LoginScreen")}>
         <Text style={styles.boldText}>LOG IN</Text>
       </TouchableOpacity>
     </View>

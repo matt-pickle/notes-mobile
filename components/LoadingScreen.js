@@ -1,15 +1,17 @@
 import React, {useEffect} from "react";
 import {View, Image, ActivityIndicator} from "react-native";
 import * as firebase from "firebase";
+import {getUserObj} from "../api/firebase-methods.js";
 import styles from "../styles/login-styles";
 
-function LoadingScreen({navigation}) {
+function LoadingScreen(props) {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user && user.emailVerified) {
-        navigation.replace("Dashboard");
+        props.setUserObj(getUserObj());
+        props.setScreen("Dashboard");
       } else {
-        navigation.replace("LoginScreen");
+        props.setScreen("LoginScreen");
       }
     });
   });

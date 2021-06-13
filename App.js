@@ -1,9 +1,7 @@
-import React from 'react';
-import {StatusBar, LogBox} from "react-native";
+import React, {useState} from 'react';
+import {View, StatusBar, LogBox} from "react-native";
 import AppLoading from "expo-app-loading";
 import {useFonts, Ubuntu_700Bold, Ubuntu_400Regular} from "@expo-google-fonts/ubuntu";
-import {NavigationContainer} from "@react-navigation/native";
-import {createStackNavigator} from "@react-navigation/stack";
 import * as firebase from "firebase";
 import apiKeys from "./config/keys";
 import LoadingScreen from "./components/LoadingScreen";
@@ -14,9 +12,10 @@ import ChangeEmailScreen from "./components/ChangeEmailScreen";
 import ChangePasswordScreen from "./components/ChangePasswordScreen";
 import Dashboard from "./components/Dashboard";
 
-const Stack = createStackNavigator();
-
 export default function App() {
+  const [userObj, setUserObj] = useState(null);
+  const [screen, setScreen] = useState("LoadingScreen");
+
   //Disable warning message
   LogBox.ignoreLogs(["Setting a timer"]);
 
@@ -30,22 +29,39 @@ export default function App() {
     Ubuntu_700Bold
   });
 
+  let displayedScreen = null;
+  switch (screen) {
+    case "LoadingScreen":
+      displayedScreen = <LoadingScreen setScreen={setScreen} setUserObj={setUserObj} />
+      break;
+    case "Dashboard":
+      displayedScreen = <Dashboard setScreen={setScreen} userObj={userObj} />
+      break;
+    case "LoginScreen":
+      displayedScreen = <LoginScreen setScreen={setScreen} setUserObj={setUserObj} />
+      break;
+    case "SignUpScreen":
+      displayedScreen = <SignUpScreen setScreen={setScreen} />
+      break;
+    case "ResetScreen":
+      displayedScreen = <ResetScreen setScreen={setScreen} />
+      break;
+    case "ChangeEmailScreen":
+      displayedScreen = <ChangeEmailScreen setScreen={setScreen} />
+      break;
+    case "ChangePasswordScreen":
+      displayedScreen = <ChangePasswordScreen setScreen={setScreen} />
+      break;
+  }
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
-      <NavigationContainer>
+      <View>
         <StatusBar></StatusBar>
-        <Stack.Navigator>
-          <Stack.Screen name='LoadingScreen' component={LoadingScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name='LoginScreen' component={LoginScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name='ResetScreen' component={ResetScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name='ChangeEmailScreen' component={ChangeEmailScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name='ChangePasswordScreen' component={ChangePasswordScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name='SignUpScreen' component={SignUpScreen} options={{ headerShown: false }}/>
-          <Stack.Screen name={'Dashboard'} component={Dashboard} options={{ headerShown: false }} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        {displayedScreen}
+      </View>
     );
   }
 }

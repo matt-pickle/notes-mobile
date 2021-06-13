@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {View, Text, TouchableOpacity, KeyboardAvoidingView, Alert} from "react-native";
-import {Ionicons} from "@expo/vector-icons";
+import React, {useState} from "react";
+import {View, Text, TouchableOpacity, KeyboardAvoidingView} from "react-native";
 import * as firebase from "firebase";
+import {Ionicons} from "@expo/vector-icons";
 import {logOut, saveNotes} from "../api/firebase-methods";
 import {AdMobInterstitial} from "expo-ads-admob";
 import SettingsModal from "./SettingsModal";
@@ -10,39 +10,19 @@ import NotesList from "./NotesList";
 import NoteEditor from "./NoteEditor";
 import {createStyleSheet} from "../styles/main-styles.js";
 
-function Dashboard({navigation}) {
-  const currentUserUID = firebase.auth().currentUser.uid;
-  const userRef = firebase.firestore().collection("users").doc(currentUserUID);
-  const [name, setName] = useState("");
-  const [theme, setTheme] = useState("light");
-  const [sortBy, setSortBy] = useState("modified-desc");
-  const [notes, setNotes] = useState(null);
+function Dashboard(props) {
+  const [name, setName] = useState(props.userObj.name);
+  const [theme, setTheme] = useState(props.userObj.theme);
+  const [sortBy, setSortBy] = useState(props.userObj.sortBy);
+  const [notes, setNotes] = useState(props.userObj.notes);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [displayedNote, setDisplayedNote] = useState(null);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [noteToDelete, setNoteToDelete] = useState({});
+  const currentUserUID = firebase.auth().currentUser.uid;
+  const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const styles = createStyleSheet(theme);
-
-  useEffect(() => {
-    async function getUserInfo() {
-      try {
-        let doc = await userRef.get();
-        if (!doc.exists) {
-          navigation.navigate("LoginScreen");
-        } else {
-          let dataObj = doc.data();
-          setName(dataObj.name);
-          setTheme(dataObj.theme);
-          setSortBy(dataObj.sortBy);
-          setNotes(dataObj.notes);
-        }
-      } catch(err) {
-        Alert.alert("Error!", err.message);
-      }
-    }
-    getUserInfo();  
-  }, []);
 
   function handleChangeTheme() {
     if (theme === "light") {
@@ -66,11 +46,11 @@ function Dashboard({navigation}) {
   }
 
   function handleChangeEmail() {
-    navigation.navigate("ChangeEmailScreen");
+    props.setScreen("ChangeEmailScreen");
   }
 
   function handleChangePassword() {
-    navigation.navigate("ChangePasswordScreen");
+    props.setScreen("ChangePasswordScreen");
   }
 
   async function handleOpenEditor(id) {
@@ -133,7 +113,7 @@ function Dashboard({navigation}) {
 
   function handleLogOut() {
     logOut();
-    navigation.replace("LoginScreen");
+    props.setScreen("LoginScreen");
   }
   
   const notesList = <NotesList 

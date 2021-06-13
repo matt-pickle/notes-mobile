@@ -2,6 +2,16 @@ import * as firebase from "firebase";
 import "firebase/firestore";
 import {Alert} from "react-native";
 
+export async function getUserObj() {
+  try {
+    const currentUserUID = firebase.auth().currentUser.uid;
+    const userObj = await firebase.firestore().collection("users").doc(currentUserUID).get().data();
+    return userObj;
+  } catch(err) {
+    Alert.alert("Error!", err.message);
+  }  
+}
+
 export async function registration(name, email, password) {
   const lowerCaseEmail = email.toLowerCase();
   try {

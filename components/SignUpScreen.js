@@ -4,7 +4,7 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 import {registration} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
-function SignUp({navigation}) {
+function SignUpScreen({navigation}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,4 +69,4 @@ function SignUp({navigation}) {
   );
 }
 
-export default SignUp;
+export default SignUpScreen;

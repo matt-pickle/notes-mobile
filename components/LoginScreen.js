@@ -5,7 +5,7 @@ import * as firebase from "firebase";
 import {logIn, logOut} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
-function SignIn({navigation}) {
+function LoginScreen({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -73,4 +73,4 @@ function SignIn({navigation}) {
   );
 }
 
-export default SignIn;
+export default LoginScreen;

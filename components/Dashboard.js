@@ -20,8 +20,8 @@ function Dashboard(props) {
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [noteToDelete, setNoteToDelete] = useState({});
-  const currentUserUID = firebase.auth().currentUser.uid;
-  const userRef = firebase.firestore().collection("users").doc(currentUserUID);
+  // const currentUserUID = firebase.auth().currentUser.uid;
+  // const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const styles = createStyleSheet(theme);
 
   function handleChangeTheme() {

@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import {View, Text, TextInput, Alert, Image} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
-import * as firebase from "firebase";
-import {logIn, logOut, getUserObj} from "../api/firebase-methods";
+import {logIn, logOut} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
 function LoginScreen(props) {
@@ -17,22 +16,8 @@ function LoginScreen(props) {
     } else if (!password) {
       Alert.alert("Password is required");
     } else {
-      logIn(email, password);
-      props.setUserObj(getUserObj());
-      setEmail("");
-      setPassword("");
-      firebase.auth().onAuthStateChanged(user => {
-        if (user && user.emailVerified) {
-          props.setScreen("Dashboard");
-        } else if (user && !user.emailVerified) {
-          user.sendEmailVerification();
-          Alert.alert(
-            "Unverified Email Address",
-            "A new automated message with a verification link has been sent to your email. " +
-            "Please use it to enable your Simple Notes account by verifying your email address."
-          );
-        }
-      });
+      logIn(email, password)
+      .then(() => props.setScreen("LoadingScreen"));
     }
   }
 

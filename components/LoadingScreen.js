@@ -1,15 +1,26 @@
 import React, {useEffect} from "react";
 import {View, Image, ActivityIndicator} from "react-native";
 import * as firebase from "firebase";
-import {getUserObj} from "../api/firebase-methods.js";
 import styles from "../styles/login-styles";
 
 function LoadingScreen(props) {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user && user.emailVerified) {
-        props.setUserObj(getUserObj());
-        props.setScreen("Dashboard");
+        const currentUserUID = firebase.auth().currentUser.uid;
+        firebase.firestore().collection("users").doc(currentUserUID).get()
+        .then(doc => {
+          const userObj = doc.data();
+          props.setUserObj(userObj);
+        })
+        .then(() => props.setScreen("Dashboard"));          
+      } else if (user && !user.emailVerified) {
+        user.sendEmailVerification();
+        Alert.alert(
+          "Unverified Email Address",
+          "A new automated message with a verification link has been sent to your email. " +
+          "Please use it to enable your Simple Notes account by verifying your email address."
+        );
       } else {
         props.setScreen("LoginScreen");
       }

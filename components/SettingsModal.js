@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {Modal, Text, View, TextInput, TouchableOpacity} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import {Ionicons} from "@expo/vector-icons";
 
 function SettingsModal(props) {
+  const [newName, setNewName] = useState("");
   const styles = props.styles;
+
+  function handleSubmit() {
+    props.handleChangeName(newName);
+    setNewName("");
+  }
 
   return (
     <Modal
@@ -79,17 +85,32 @@ function SettingsModal(props) {
             />
           </Picker>
         </View>
+        
+        <View style={styles.changeNameContainer}>
+          <Text style={styles.modalText}>Change Name: </Text>
+          <TextInput
+            style={styles.changeNameInput}
+            placeholderTextColor="rgb(120,120,130)"
+            placeholder="New Name"
+            maxLength={20}
+            value={newName}
+            onChangeText={text => setNewName(text)}
+          />
+          <TouchableOpacity onPress={handleSubmit}>
+            <Text style={styles.settingsButton}>SUBMIT</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity onPress={props.handleChangeEmail}>
+        <TouchableOpacity onPress={() => props.setScreen("ChangeEmailScreen")}>
           <Text style={styles.settingsButton}>CHANGE EMAIL</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={props.handleChangePassword}>
+        <TouchableOpacity onPress={() => props.setScreen("ChangePasswordScreen")}>
           <Text style={styles.settingsButton}>CHANGE PASSWORD</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={props.handleLogOut}>
-          <Text style={styles.settingsButton}>LOG OUT</Text>
+          <Text style={styles.logOutButton}>LOG OUT</Text>
         </TouchableOpacity>
       </View>
     </Modal>

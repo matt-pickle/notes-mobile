@@ -45,12 +45,11 @@ function Dashboard(props) {
     });
   }
 
-  function handleChangeEmail() {
-    props.setScreen("ChangeEmailScreen");
-  }
-
-  function handleChangePassword() {
-    props.setScreen("ChangePasswordScreen");
+  function handleChangeName(newName) {
+    setName(newName);
+    userRef.update({
+      name: newName
+    });
   }
 
   async function handleOpenEditor(id) {
@@ -152,8 +151,8 @@ function Dashboard(props) {
         handleChangeTheme={handleChangeTheme}
         sortBy={sortBy}
         handleChangeSortBy={handleChangeSortBy}
-        handleChangeEmail={handleChangeEmail}
-        handleChangePassword={handleChangePassword}
+        handleChangeName={handleChangeName}
+        setScreen={props.setScreen}
         handleLogOut={handleLogOut}
       />
       <DeleteModal

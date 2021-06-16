@@ -96,13 +96,13 @@ function createStyleSheet(theme) {
     modalTopRowContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
-      marginBottom: 20
+      marginBottom: 25
     },
 
     themeSwitchContainer: {
       flexDirection: "row",
       alignItems: "center",
-      marginBottom: 20
+      marginBottom: 25
     },
 
     themePicker: {
@@ -114,7 +114,7 @@ function createStyleSheet(theme) {
     sortBySwitchContainer: {
       flexDirection: "row",
       alignItems: "center",
-      marginBottom: 20
+      marginBottom: 25
     },
 
     sortByPicker: {
@@ -123,11 +123,28 @@ function createStyleSheet(theme) {
       height: 25
     },
 
+    changeNameContainer: {
+      flexDirection: "column",
+    },
+
+    changeNameInput: {
+      fontSize: 18,
+      width: 100,
+      marginVertical: 5
+    },
+
     settingsButton: {
       color: buttonTextColor,
       fontSize: 18,
       fontFamily: boldFont,
-      marginBottom: 20
+      marginBottom: 25
+    },
+
+    logOutButton: {
+      color: buttonTextColor,
+      fontSize: 18,
+      fontFamily: boldFont,
+      marginBottom: 15
     },
 
     //DELETE MODAL

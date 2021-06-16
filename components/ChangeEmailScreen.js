@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {View, Text, TextInput, Alert, Image} from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
+import { Ionicons } from '@expo/vector-icons';
 import {changeEmail} from "../api/firebase-methods";
 import styles from "../styles/login-styles";
 
@@ -58,6 +59,15 @@ function ChangeEmailScreen(props) {
       </TouchableOpacity>
       <TouchableOpacity onPress={() => props.setScreen("ResetScreen")}>
         <Text style={styles.smallLink}>Forgot password?</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        style={styles.backButton}
+        onPress={() => props.setScreen("Dashboard")}>
+        <Ionicons
+          name="arrow-back"
+          style={styles.backArrow}
+        />
+        <Text style={styles.boldText}>GO BACK</Text>
       </TouchableOpacity>
     </View>
   );

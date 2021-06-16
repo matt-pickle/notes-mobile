@@ -57,7 +57,8 @@ smallLink: {
 },
 
 backButton: {
-  flexDirection: "row"
+  flexDirection: "row",
+  marginTop: 15
 },
 
 backArrow: {

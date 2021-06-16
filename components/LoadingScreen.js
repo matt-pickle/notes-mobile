@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {View, Image, ActivityIndicator} from "react-native";
+import {View, Image, ActivityIndicator, Alert} from "react-native";
 import * as firebase from "firebase";
 import styles from "../styles/login-styles";
 
@@ -21,6 +21,7 @@ function LoadingScreen(props) {
           "A new automated message with a verification link has been sent to your email. " +
           "Please use it to enable your Simple Notes account by verifying your email address."
         );
+        props.setScreen("LoginScreen");
       } else {
         props.setScreen("LoginScreen");
       }

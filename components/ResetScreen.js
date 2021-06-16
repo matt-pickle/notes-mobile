@@ -38,7 +38,7 @@ function ResetScreen(props) {
       </TouchableOpacity>
       <TouchableOpacity 
         style={styles.backButton}
-        onPress={() => navigation.navigate("LoginScreen")}>
+        onPress={() => props.setScreen("LoginScreen")}>
         <Ionicons
           name="arrow-back"
           style={styles.backArrow}

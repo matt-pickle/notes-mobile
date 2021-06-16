@@ -38,6 +38,11 @@ function NotesList(props) {
         return a.title[0] < b.title[0];
       });
       break;
+    default:
+      sortedNotes = props.notes.sort((a, b) => {
+        return a.lastUpdated < b.lastUpdated;
+      });
+      break;
   }
 
   const notesListItems = sortedNotes.map(item => {

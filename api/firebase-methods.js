@@ -14,6 +14,7 @@ export async function registration(name, email, password) {
           email: user.email,
           name: name,
           theme: "dark",
+          sortBy: "modified-desc",
           notes: []
         });
         Alert.alert(

@@ -26,7 +26,10 @@
       },
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-5662395825140930~8978951870"
-      }
+      },
+      "permissions": [],
+      "versionCode": 1,
+      "package": "com.slightlyimpressive.simplenotes"
     },
     "web": {
       "favicon": "./assets/favicon.png"

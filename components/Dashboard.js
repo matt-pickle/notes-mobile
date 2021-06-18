@@ -58,7 +58,8 @@ function Dashboard(props) {
     });
     setDisplayedNote(noteToDisplay);
     setIsEditorOpen(true);
-    await AdMobInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712"); //Test ID
+    //await AdMobInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712"); //Test ID
+    await AdMobInterstitial.setAdUnitID("ca-app-pub-5662395825140930/7665870206"); //Real Ad ID
     await AdMobInterstitial.requestAdAsync({servePersonalizedAds: true});
   }
 

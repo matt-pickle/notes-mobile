@@ -17,9 +17,11 @@ function Dashboard(props) {
   const [notes, setNotes] = useState(props.userObj.notes);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [displayedNote, setDisplayedNote] = useState(null);
+  const [editorOpenCount, setEditorOpenCount] = useState(0);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [noteToDelete, setNoteToDelete] = useState({});
+  const adStartInterval = 2;
   const currentUserUID = firebase.auth().currentUser.uid;
   const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const styles = createStyleSheet(theme);
@@ -58,9 +60,13 @@ function Dashboard(props) {
     });
     setDisplayedNote(noteToDisplay);
     setIsEditorOpen(true);
-    //await AdMobInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712"); //Test ID
-    await AdMobInterstitial.setAdUnitID("ca-app-pub-5662395825140930/7665870206"); //Real Ad ID
-    await AdMobInterstitial.requestAdAsync({servePersonalizedAds: true});
+    if (editorOpenCount < adStartInterval) {
+      setEditorOpenCount(prev => prev + 1);
+    } else if (editorOpenCount === adStartInterval) {
+      await AdMobInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712"); //Test ID
+      // await AdMobInterstitial.setAdUnitID("ca-app-pub-5662395825140930/7665870206"); //Real Ad ID
+      await AdMobInterstitial.requestAdAsync({servePersonalizedAds: true});
+    }
   }
 
   async function handleSaveAndClose(title, body) {

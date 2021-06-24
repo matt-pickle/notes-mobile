@@ -26,18 +26,51 @@ function Dashboard(props) {
   const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const styles = createStyleSheet(theme);
 
-  function handleChangeTheme() {
-    if (theme === "light") {
-      userRef.update({
-        theme: "dark"
-      });
-      setTheme("dark");
-    } else {
-      userRef.update({
-        theme: "light"
-      });
-      setTheme("light");
-    } 
+  function handleChangeTheme(newTheme) {
+    switch (newTheme) {
+      case "red":
+        userRef.update({
+          theme: "red"
+        });
+        setTheme("red");
+        break;
+      case "orange":
+        userRef.update({
+          theme: "orange"
+        });
+        setTheme("orange");
+        break;
+      case "yellow":
+        userRef.update({
+          theme: "yellow"
+        });
+        setTheme("yellow");
+        break;
+      case "green":
+        userRef.update({
+          theme: "green"
+        });
+        setTheme("green");
+        break;
+      case "blue":
+        userRef.update({
+          theme: "blue"
+        });
+        setTheme("blue");
+        break;
+      case "purple":
+        userRef.update({
+          theme: "purple"
+        });
+        setTheme("purple");
+        break;
+      case "gray":
+        userRef.update({
+          theme: "gray"
+        });
+        setTheme("gray");
+        break;
+    }
   }
 
   function handleChangeSortBy(newSortBy) {
@@ -63,8 +96,8 @@ function Dashboard(props) {
     if (editorOpenCount < adStartInterval) {
       setEditorOpenCount(prev => prev + 1);
     } else if (editorOpenCount === adStartInterval) {
-      await AdMobInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712"); //Test ID
-      // await AdMobInterstitial.setAdUnitID("ca-app-pub-5662395825140930/7665870206"); //Real Ad ID
+      // await AdMobInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712"); //Test ID
+      await AdMobInterstitial.setAdUnitID("ca-app-pub-5662395825140930/7665870206"); //Real Ad ID
       await AdMobInterstitial.requestAdAsync({servePersonalizedAds: true});
     }
   }

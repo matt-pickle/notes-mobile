@@ -1,49 +1,50 @@
 import {StyleSheet, Dimensions, StatusBar} from 'react-native';
 
 function createStyleSheet(theme) {
-  let mainColor = "rgb(0,30,80)";
-  let buttonColor = "rgb(200,200,210)";
-  let dashTextColor = "rgb(200,200,210)";
-  let buttonTextColor = "rgb(0,30,80)";
+  let darkColor = "rgb(0,30,80)";
+  let lightColor = "rgb(200,200,210)";
   let lightFont = "Ubuntu_400Regular";
   let boldFont = "Ubuntu_700Bold";
   const windowHeight = Dimensions.get("window").height - StatusBar.currentHeight;
 
   switch (theme) {
-    case "dark":
-      mainColor = "rgb(0,30,80)";
-      buttonColor = "rgb(200,200,210)";
-      dashTextColor = "rgb(200,200,210)";
-      buttonTextColor = "rgb(0,30,80)";
+    case "red":
+      darkColor = "rgb(80,0,0)";
+      lightColor = "rgb(210,200,200)";
       break;
-    case "light":
-      mainColor = "rgb(200,200,200)";
-      buttonColor = "white";
-      dashTextColor = "black";
-      buttonTextColor = "black";
+    case "orange":
+      darkColor = "rgb(130,60,0)";
+      lightColor = "rgb(210,205,200)";
+      break;
+    case "yellow":
+      darkColor = "rgb(150,140,0)";
+      lightColor = "rgb(205,205,200)";
+      break;
+    case "green":
+      darkColor = "rgb(0,80,0)";
+      lightColor = "rgb(200,210,200)";
+      break;
+    case "blue":
+      darkColor = "rgb(0,30,80)";
+      lightColor = "rgb(200,200,210)";
+      break;
+    case "purple":
+      darkColor = "rgb(70,0,80)";
+      lightColor = "rgb(207,200,210)";
+      break;
+    case "gray":
+      darkColor = "rgb(80,80,80)";
+      lightColor = "rgb(200,200,210)";
       break;
   }
 
   return StyleSheet.create({
 
-    //BUTTONS
-    
-    button: {
-      backgroundColor: buttonColor,
-      width: 50,
-      elevation: 10
-    },
-
-    buttonText: {
-      color: buttonTextColor,
-      fontFamily: lightFont
-    },
-
     //DASHBOARD
 
     dashContainer: {
       flexDirection: "column",
-      backgroundColor: mainColor,
+      backgroundColor: darkColor,
       width: "100%",
       height: windowHeight,
       padding: 15
@@ -56,13 +57,13 @@ function createStyleSheet(theme) {
     },
 
     dashHeader: {
-      color: dashTextColor,
+      color: lightColor,
       fontFamily: boldFont,
       fontSize: 24
     },
     
     dashText: {
-      color: dashTextColor,
+      color: lightColor,
       fontFamily: lightFont,
       fontSize: 18
     },
@@ -72,7 +73,7 @@ function createStyleSheet(theme) {
     settingsModal: {
       alignSelf: "center",
       flexDirection: "column",
-      backgroundColor: buttonColor,
+      backgroundColor: lightColor,
       width: "80%",
       paddingTop: 10,
       paddingHorizontal: 15,
@@ -82,13 +83,13 @@ function createStyleSheet(theme) {
     },
 
     modalHeader: {
-      color: buttonTextColor,
+      color: "black",
       fontSize: 24,
       fontFamily: boldFont
     },
 
     modalText: {
-      color: buttonTextColor,
+      color: "black",
       fontSize: 18,
       fontFamily: lightFont
     },
@@ -106,7 +107,7 @@ function createStyleSheet(theme) {
     },
 
     themePicker: {
-      color: buttonTextColor,
+      color: "black",
       width: 100,
       height: 25
     },
@@ -118,7 +119,7 @@ function createStyleSheet(theme) {
     },
 
     sortByPicker: {
-      color: buttonTextColor,
+      color: "black",
       width: 200,
       height: 25
     },
@@ -134,14 +135,14 @@ function createStyleSheet(theme) {
     },
 
     settingsButton: {
-      color: buttonTextColor,
+      color: "black",
       fontSize: 18,
       fontFamily: boldFont,
       marginBottom: 25
     },
 
     logOutButton: {
-      color: buttonTextColor,
+      color: "black",
       fontSize: 18,
       fontFamily: boldFont,
       marginBottom: 15
@@ -152,7 +153,7 @@ function createStyleSheet(theme) {
     deleteModal: {
       alignSelf: "center",
       flexDirection: "column",
-      backgroundColor: buttonColor,
+      backgroundColor: lightColor,
       width: "80%",
       paddingTop: 10,
       paddingHorizontal: 15,
@@ -163,7 +164,7 @@ function createStyleSheet(theme) {
 
     deleteModalText: {
       textAlign: "center",
-      color: buttonTextColor,
+      color: "black",
       fontSize: 18,
       fontFamily: lightFont,
       marginBottom: 15
@@ -190,7 +191,7 @@ function createStyleSheet(theme) {
 
     createNoteButton: {
       alignSelf: "center",
-      backgroundColor: buttonColor,
+      backgroundColor: lightColor,
       width: 50,
       height: 50,
       alignItems: "center",
@@ -199,7 +200,7 @@ function createStyleSheet(theme) {
     },
 
     createNoteButtonText: {
-      color: buttonTextColor,
+      color: "black",
       fontSize: 50,
       lineHeight: 60
     },
@@ -209,7 +210,7 @@ function createStyleSheet(theme) {
     listItemContainer: {
       flexDirection: "row",
       alignItems: "center",
-      backgroundColor: buttonColor,
+      backgroundColor: lightColor,
       height: 35,
       paddingHorizontal: 10,
       marginBottom: 10,
@@ -224,7 +225,7 @@ function createStyleSheet(theme) {
     },
 
     listItemText: {
-      color: buttonTextColor,
+      color: "black",
       fontFamily: lightFont,
       fontSize: 18
     },  
@@ -235,7 +236,7 @@ function createStyleSheet(theme) {
     },
 
     listItemIcon: {
-      color: buttonTextColor,
+      color: "black",
       fontFamily: lightFont,
       fontSize: 24
     },
@@ -244,12 +245,12 @@ function createStyleSheet(theme) {
 
     editorContainer: {
       flex: 1,
-      backgroundColor: mainColor
+      backgroundColor: darkColor
     },
 
     titleInputBox: {
-      backgroundColor: buttonColor,
-      color: buttonTextColor,
+      backgroundColor: lightColor,
+      color: "black",
       fontFamily: lightFont,
       fontSize: 20,
       paddingHorizontal: 10,
@@ -259,8 +260,8 @@ function createStyleSheet(theme) {
 
     bodyInputBox: {
       flex: 1,
-      backgroundColor: buttonColor,
-      color: buttonTextColor,
+      backgroundColor: lightColor,
+      color: "black",
       fontFamily: lightFont,
       fontSize: 18,
       padding: 10,
@@ -279,7 +280,7 @@ function createStyleSheet(theme) {
     },
 
     saveButton: {
-      color: dashTextColor,
+      color: lightColor,
       fontFamily: boldFont,
       fontSize: 18
     }

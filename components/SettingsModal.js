@@ -41,12 +41,32 @@ function SettingsModal(props) {
             onValueChange={value => props.handleChangeTheme(value)}
           >
             <Picker.Item
-              label="Light"
-              value="light"
+              label="Red"
+              value="red"
             />
             <Picker.Item
-              label="Dark"
-              value="dark"
+              label="Orange"
+              value="orange"
+            />
+            <Picker.Item
+              label="Yellow"
+              value="yellow"
+            />
+            <Picker.Item
+              label="Green"
+              value="green"
+            />
+            <Picker.Item
+              label="Blue"
+              value="blue"
+            />
+            <Picker.Item
+              label="Purple"
+              value="purple"
+            />
+            <Picker.Item
+              label="Gray"
+              value="gray"
             />
           </Picker>
         </View>

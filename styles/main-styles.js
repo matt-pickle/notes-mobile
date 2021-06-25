@@ -108,7 +108,7 @@ function createStyleSheet(theme) {
 
     themePicker: {
       color: "black",
-      width: 100,
+      width: 115,
       height: 25
     },
 

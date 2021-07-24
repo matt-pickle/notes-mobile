@@ -30,9 +30,9 @@ export async function registration(name, email, password) {
 }
 
 export async function logIn(email, password) {
-  const lowerCaseEmail = email.toLowerCase();
+  const sanitizedEmail = email.toLowerCase().trim();
   try {
-    await firebase.auth().signInWithEmailAndPassword(lowerCaseEmail, password)
+    await firebase.auth().signInWithEmailAndPassword(sanitizedEmail, password)
   } catch(err) {
     Alert.alert("Error!", err.message);
   }
@@ -55,8 +55,9 @@ export async function saveNotes(userRef, updatedNotesArr) {
 }
 
 export async function resetPassword(email) {
+  const sanitizedEmail = email.toLowerCase().trim();
   try {
-    await firebase.auth().sendPasswordResetEmail(email);
+    await firebase.auth().sendPasswordResetEmail(sanitizedEmail);
     Alert.alert(
       "Password Reset",
       "An automated message with a password reset link has been sent to your email."
@@ -67,13 +68,13 @@ export async function resetPassword(email) {
 }
 
 export async function changeEmail(oldEmail, password, newEmail) {
-  const lowerCaseOldEmail = oldEmail.toLowerCase();
-  const lowerCaseNewEmail = newEmail.toLowerCase();
+  const sanitizedOldEmail = oldEmail.toLowerCase().trim();
+  const sanitizedNewEmail = newEmail.toLowerCase().trim();
   try {
-    await firebase.auth().signInWithEmailAndPassword(lowerCaseOldEmail, password)
+    await firebase.auth().signInWithEmailAndPassword(sanitizedOldEmail, password)
     .then(() => {
       const user = firebase.auth().currentUser;
-      user.updateEmail(lowerCaseNewEmail)
+      user.updateEmail(sanitizedNewEmail)
       .then(() => {
         user.sendEmailVerification();
         firebase.firestore().collection("users").doc(user.uid).update({

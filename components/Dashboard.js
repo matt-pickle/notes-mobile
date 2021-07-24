@@ -21,7 +21,7 @@ function Dashboard(props) {
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [noteToDelete, setNoteToDelete] = useState({});
-  const adStartInterval = 2;
+  const adStartInterval = 1;
   const currentUserUID = firebase.auth().currentUser.uid;
   const userRef = firebase.firestore().collection("users").doc(currentUserUID);
   const styles = createStyleSheet(theme);

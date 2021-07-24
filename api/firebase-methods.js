@@ -3,9 +3,9 @@ import "firebase/firestore";
 import {Alert} from "react-native";
 
 export async function registration(name, email, password) {
-  const lowerCaseEmail = email.toLowerCase();
+  const sanitizedEmail = email.toLowerCase().trim();
   try {
-    await firebase.auth().createUserWithEmailAndPassword(lowerCaseEmail, password)
+    await firebase.auth().createUserWithEmailAndPassword(sanitizedEmail, password)
     .then(userCredential => {
       if (userCredential) {
         const user = userCredential.user;

@@ -13,6 +13,7 @@ import ChangePasswordScreen from "./components/ChangePasswordScreen";
 import Dashboard from "./components/Dashboard";
 
 export default function App() {
+  const [currentUserUID, setCurrentUserUID] = useState(null);
   const [userObj, setUserObj] = useState(null);
   const [screen, setScreen] = useState("LoadingScreen");
 
@@ -32,10 +33,10 @@ export default function App() {
   let displayedScreen = null;
   switch (screen) {
     case "LoadingScreen":
-      displayedScreen = <LoadingScreen setScreen={setScreen} setUserObj={setUserObj} />
+      displayedScreen = <LoadingScreen setScreen={setScreen} setUserObj={setUserObj} setCurrentUserUID={setCurrentUserUID}/>
       break;
     case "Dashboard":
-      displayedScreen = <Dashboard setScreen={setScreen} userObj={userObj} />
+      displayedScreen = <Dashboard setScreen={setScreen} currentUserUID={currentUserUID} userObj={userObj} />
       break;
     case "LoginScreen":
       displayedScreen = <LoginScreen setScreen={setScreen} setUserObj={setUserObj} />

@@ -33,6 +33,18 @@ export async function logIn(email, password) {
   const sanitizedEmail = email.toLowerCase().trim();
   try {
     await firebase.auth().signInWithEmailAndPassword(sanitizedEmail, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+      if (!user.emailVerified) {
+        user.sendEmailVerification();
+        firebase.auth().signOut();
+        Alert.alert(
+          "Unverified Email Address",
+          "A new automated message with a verification link has been sent to your email. " +
+          "Please use it to enable your Simple Notes account by verifying your email address."
+        );
+      }
+    });
   } catch(err) {
     Alert.alert("Error!", err.message);
   }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, LogBox, Dimensions} from "react-native";
 import AppLoading from "expo-app-loading";
 import {useFonts, Ubuntu_700Bold, Ubuntu_400Regular} from "@expo-google-fonts/ubuntu";
@@ -18,14 +18,19 @@ export default function App() {
   const [screen, setScreen] = useState("LoadingScreen");
   const [orientation, setOrientation] = useState("portrait");
 
-  Dimensions.addEventListener("change", () => {
-    const dim = Dimensions.get("screen");
-    if (dim.width >= dim.height) {
-      setOrientation("landscape");
-    } else {
-      setOrientation("portrait");
+  useEffect(() => {
+    function onChange() {
+      const dim = Dimensions.get("screen");
+      if (dim.width >= dim.height) {
+        setOrientation("landscape");
+      } else {
+        setOrientation("portrait");
+      }
     }
-  });
+    Dimensions.addEventListener("change", onChange);
+    return () => Dimensions.removeEventListener("change", onChange);
+  }, []);
+    
 
   //Disable warning message
   LogBox.ignoreLogs(["Setting a timer"]);

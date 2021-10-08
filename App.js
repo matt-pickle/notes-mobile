@@ -27,8 +27,8 @@ export default function App() {
         setOrientation("portrait");
       }
     }
-    Dimensions.addEventListener("change", onChange);
-    return () => Dimensions.removeEventListener("change", onChange);
+    const subscription = Dimensions.addEventListener("change", onChange);
+    return () => subscription.remove();
   }, []);
     
 

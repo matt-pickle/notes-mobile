@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StatusBar, LogBox, Dimensions} from "react-native";
+import {View, LogBox, Dimensions} from "react-native";
 import AppLoading from "expo-app-loading";
 import {useFonts, Ubuntu_700Bold, Ubuntu_400Regular} from "@expo-google-fonts/ubuntu";
 import * as firebase from "firebase";
@@ -70,7 +70,6 @@ export default function App() {
   } else {
     return (
       <View>
-        <StatusBar></StatusBar>
         {displayedScreen}
       </View>
     );

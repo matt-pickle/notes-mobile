@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, StatusBar} from "react-native";
 
 const mainColor = "rgb(0,30,80)";
 const accentColor = "rgb(200,200,210)";
@@ -12,7 +12,8 @@ loginScreen: {
   alignItems: "center",
   backgroundColor: mainColor,
   width: "100%",
-  height: "100%"
+  height: "100%",
+  paddingTop: StatusBar.currentHeight
 },
 
 logo: {

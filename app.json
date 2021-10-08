@@ -16,6 +16,14 @@
     "assetBundlePatterns": [
       "assets/*"
     ],
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#00000088"
+    },
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#000000"
+    },
     "ios": {
       "supportsTablet": true
     },

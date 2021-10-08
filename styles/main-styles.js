@@ -5,7 +5,7 @@ function createStyleSheet(theme) {
   let lightColor = "rgb(200,200,210)";
   let lightFont = "Ubuntu_400Regular";
   let boldFont = "Ubuntu_700Bold";
-  const windowHeight = Dimensions.get("window").height - StatusBar.currentHeight;
+  const windowHeight = Dimensions.get("window").height;
 
   switch (theme) {
     case "red":
@@ -47,7 +47,8 @@ function createStyleSheet(theme) {
       backgroundColor: darkColor,
       width: "100%",
       height: windowHeight,
-      padding: 15
+      padding: 15,
+      paddingTop: StatusBar.currentHeight + 15
     },
 
     dashTopRowContainer: {

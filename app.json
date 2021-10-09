@@ -2,7 +2,7 @@
   "expo": {
     "name": "notes-mobile",
     "slug": "notes-mobile",
-    "version": "1.0.0",
+    "version": "1.5",
     "orientation": "default",
     "icon": "./assets/app-icon.png",
     "splash": {
@@ -36,7 +36,7 @@
         "googleMobileAdsAppId": "ca-app-pub-5662395825140930~8978951870"
       },
       "permissions": [],
-      "versionCode": 1,
+      "versionCode": 6,
       "package": "com.slightlyimpressive.simplenotes"
     },
     "web": {

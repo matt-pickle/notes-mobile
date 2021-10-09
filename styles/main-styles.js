@@ -46,7 +46,7 @@ function createStyleSheet(theme) {
       flexDirection: "column",
       backgroundColor: darkColor,
       width: "100%",
-      height: windowHeight,
+      height: "100%",
       padding: 15,
       paddingTop: StatusBar.currentHeight + 15
     },
@@ -186,7 +186,7 @@ function createStyleSheet(theme) {
 
     list: {
       flexGrow: 1,
-      maxHeight: windowHeight - 135,
+      maxHeight: windowHeight - StatusBar.currentHeight - 135,
       marginBottom: 10
     },
 
